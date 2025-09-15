@@ -1,0 +1,104 @@
+{
+  "name": "Configuration React/Next.js",
+  "version": "1.0.0",
+  "description": "Configuration optimisée pour les applications React et Next.js",
+  
+  "selectorPriorities": [
+    "data-testid",
+    "data-cy",
+    "data-test",
+    "aria-label",
+    "aria-labelledby",
+    "role",
+    "data-role",
+    "id",
+    "name",
+    "className"
+  ],
+  
+  "dynamicValuePatterns": [
+    {
+      "pattern": "^\\\\d+$",
+      "description": "IDs numériques auto-générés",
+      "flags": ""
+    },
+    {
+      "pattern": "_\\\\d{4,}$|^\\\\d{4,}_",
+      "description": "Suffixes/préfixes temporels",
+      "flags": ""
+    },
+    {
+      "pattern": "uuid|guid|session|temp",
+      "description": "Identifiants temporaires",
+      "flags": "i"
+    },
+    {
+      "pattern": "\\\\w{8}-\\\\w{4}-\\\\w{4}-\\\\w{4}-\\\\w{12}",
+      "description": "Format UUID",
+      "flags": ""
+    },
+    {
+      "pattern": "^react-",
+      "description": "IDs React auto-générés",
+      "flags": ""
+    }
+  ],
+  
+  "dynamicClassPatterns": [
+    {
+      "pattern": "^css-\\\\w{6,}$",
+      "description": "CSS-in-JS classes (styled-components, emotion)",
+      "flags": ""
+    },
+    {
+      "pattern": "^sc-\\\\w{6,}$",
+      "description": "Styled-components",
+      "flags": ""
+    },
+    {
+      "pattern": "^emotion-\\\\w+$",
+      "description": "Emotion CSS",
+      "flags": ""
+    },
+    {
+      "pattern": "^jsx-\\\\d+$",
+      "description": "JSX classes générées",
+      "flags": ""
+    },
+    {
+      "pattern": "^__\\\\w+_\\\\w+$",
+      "description": "CSS Modules avec hash",
+      "flags": ""
+    },
+    {
+      "pattern": "^\\\\w+_\\\\w+_\\\\w{5,}$",
+      "description": "CSS Modules format Next.js",
+      "flags": ""
+    }
+  ],
+  
+  "preferences": {
+    "allowTextSelectors": true,
+    "maxTextLength": 40,
+    "ignoreHiddenElements": true,
+    "preferDataAttributes": true,
+    "fallbackToXPath": false
+  },
+  
+  "projectSpecific": {
+    "stableClasses": [
+      "btn",
+      "form",
+      "nav",
+      "header",
+      "footer",
+      "sidebar",
+      "content",
+      "container"
+    ],
+    "reactPatterns": {
+      "componentNames": true,
+      "hookNames": false
+    }
+  }
+}

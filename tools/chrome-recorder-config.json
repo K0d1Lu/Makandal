@@ -1,0 +1,116 @@
+{
+  "name": "Configuration générique Chrome Recorder",
+  "version": "1.0.0",
+  "description": "Configuration pour améliorer les sélecteurs Chrome DevTools Recorder",
+  
+  "selectorPriorities": [
+    "data-testid",
+    "data-cy", 
+    "data-test",
+    "data-automation",
+    "portal-action",
+    "data-role",
+    "aria-label",
+    "aria-labelledby",
+    "role",
+    "id",
+    "name",
+    "class"
+  ],
+  
+  "dynamicValuePatterns": [
+    {
+      "pattern": "^__BVID__",
+      "description": "Bootstrap Vue IDs dynamiques",
+      "flags": ""
+    },
+    {
+      "pattern": "^__bv_popover_",
+      "description": "Bootstrap Vue popovers",
+      "flags": ""
+    },
+    {
+      "pattern": "^\\d+$",
+      "description": "IDs purement numériques",
+      "flags": ""
+    },
+    {
+      "pattern": "_\\d{3,}$",
+      "description": "Suffixes numériques longs",
+      "flags": ""
+    },
+    {
+      "pattern": "uuid|guid",
+      "description": "UUIDs et GUIDs",
+      "flags": "i"
+    },
+    {
+      "pattern": "\\\\w{8}-\\\\w{4}-\\\\w{4}-\\\\w{4}-\\\\w{12}",
+      "description": "Format UUID standard",
+      "flags": ""
+    },
+    {
+      "pattern": "^tmp_|_tmp$",
+      "description": "Éléments temporaires",
+      "flags": "i"
+    }
+  ],
+  
+  "dynamicClassPatterns": [
+    {
+      "pattern": "^b-\\\\w+-\\\\d+$",
+      "description": "Bootstrap Vue classes",
+      "flags": ""
+    },
+    {
+      "pattern": "^v-\\\\w+-\\\\d+$",
+      "description": "Vue.js classes générées",
+      "flags": ""
+    },
+    {
+      "pattern": "^\\\\w+_\\\\d{6,}$",
+      "description": "Classes avec hash long",
+      "flags": ""
+    },
+    {
+      "pattern": "^css-\\\\w{6,}$",
+      "description": "CSS-in-JS classes",
+      "flags": ""
+    },
+    {
+      "pattern": "^emotion-\\\\w+$",
+      "description": "Emotion CSS classes",
+      "flags": ""
+    },
+    {
+      "pattern": "^sc-\\\\w{6,}$",
+      "description": "Styled-components classes",
+      "flags": ""
+    }
+  ],
+  
+  "preferences": {
+    "allowTextSelectors": true,
+    "maxTextLength": 50,
+    "ignoreHiddenElements": true,
+    "preferDataAttributes": true,
+    "fallbackToXPath": false
+  },
+  
+  "projectSpecific": {
+    "wedia": {
+      "additionalPriorities": ["portal-action", "data-portal"],
+      "customPatterns": [
+        {
+          "pattern": "^cw-",
+          "description": "ClassicWeb prefixes",
+          "type": "stable"
+        }
+      ]
+    },
+    "generic": {
+      "additionalPriorities": [],
+      "customPatterns": []
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "name": "Configuration Wedia/Portal",
+  "version": "1.0.0",
+  "description": "Configuration spécialisée pour les projets Wedia Portal",
+  
+  "selectorPriorities": [
+    "portal-action",
+    "data-portal",
+    "data-testid",
+    "data-automation",
+    "aria-label",
+    "aria-labelledby",
+    "id",
+    "name",
+    "class"
+  ],
+  
+  "dynamicValuePatterns": [
+    {
+      "pattern": "^__BVID__",
+      "description": "Bootstrap Vue IDs dynamiques",
+      "flags": ""
+    },
+    {
+      "pattern": "^__bv_popover_|^__bv_modal_",
+      "description": "Bootstrap Vue composants",
+      "flags": ""
+    },
+    {
+      "pattern": "^\\d+$",
+      "description": "IDs purement numériques",
+      "flags": ""
+    },
+    {
+      "pattern": "_\\d{3,}$|^\\d{4,}",
+      "description": "Suffixes/préfixes numériques longs",
+      "flags": ""
+    },
+    {
+      "pattern": "uuid|guid|token",
+      "description": "Identifiants temporaires",
+      "flags": "i"
+    }
+  ],
+  
+  "dynamicClassPatterns": [
+    {
+      "pattern": "^b-\\\\w+-\\\\d+$",
+      "description": "Bootstrap Vue classes",
+      "flags": ""
+    },
+    {
+      "pattern": "^v-\\\\w+-\\\\d+$",
+      "description": "Vue.js classes générées",
+      "flags": ""
+    },
+    {
+      "pattern": "^\\\\w+_\\\\d{6,}$",
+      "description": "Classes avec hash",
+      "flags": ""
+    }
+  ],
+  
+  "preferences": {
+    "allowTextSelectors": true,
+    "maxTextLength": 30,
+    "ignoreHiddenElements": true,
+    "preferDataAttributes": true,
+    "fallbackToXPath": false
+  },
+  
+  "projectSpecific": {
+    "stableClasses": [
+      "cw-",
+      "portal-",
+      "btn-",
+      "form-",
+      "navbar-"
+    ],
+    "unstableClasses": [
+      "v-",
+      "b-",
+      "temp-",
+      "generated-"
+    ]
+  }
+}
