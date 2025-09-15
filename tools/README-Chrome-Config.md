@@ -69,44 +69,104 @@ Le script `chrome-recorder-config.js` génère des sélecteurs **stables et fiab
 
 ## 🚀 Utilisation
 
-### **Méthode 1 : Injection manuelle**
+### **Méthode 1 : Injection manuelle (recommandé)**
 
-1. **Chargez la configuration** :
+1. **Copiez le contenu du script** dans la console :
 ```javascript
-// Dans la console Chrome
-(async () => {
-  const config = await fetch('./tools/chrome-recorder-config.json').then(r => r.json());
-  window.MakandalRecorder.initWithConfig(config);
-})();
+// Copiez-collez TOUT le contenu de chrome-recorder-config.js dans la console
+// Le script s'initialise automatiquement avec la config par défaut
 ```
 
-2. **Injectez le script** :
+2. **OU - Configuration personnalisée** :
 ```javascript
-// Copiez-collez le contenu de chrome-recorder-config.js
+// Si vous voulez une config spécifique, définissez-la directement :
+const customConfig = {
+  selectorPriorities: ['data-testid', 'portal-action', 'aria-label'],
+  dynamicValuePatterns: [
+    { pattern: '^__BVID__', flags: '' },
+    { pattern: '^\\\\d+$', flags: '' }
+  ],
+  preferences: { allowTextSelectors: true }
+};
+
+// Puis initialisez avec votre config
+window.MakandalRecorder.initWithConfig(customConfig);
 ```
 
-### **Méthode 2 : Chargement automatique**
+### **Méthode 2 : Serveur local (pour développement)**
 
+Si vous développez localement avec un serveur web :
 ```javascript
-// Avec configuration par défaut
-window.MakandalRecorder.loadConfigAndInit('./tools/chrome-recorder-config.json');
+// Avec serveur HTTP local (ex: http://localhost:3000)
+window.MakandalRecorder.loadConfigAndInit('/tools/chrome-recorder-config.json');
 
 // Avec configuration projet-spécifique  
-window.MakandalRecorder.loadConfigAndInit('./tools/configs/wedia-config.json', 'wedia');
+window.MakandalRecorder.loadConfigAndInit('/tools/configs/wedia-config.json', 'wedia');
 ```
 
-### **Méthode 3 : Bookmarklet**
+### **Méthode 3 : Bookmarklet (pour sites en production)**
 
-Créez un marque-page avec ce code :
+Créez un marque-page avec ce code (fonctionne seulement si les fichiers sont servis via HTTP) :
 ```javascript
 javascript:(function(){
-  fetch('/tools/chrome-recorder-config.json')
-    .then(r=>r.json())
-    .then(c=>fetch('/tools/chrome-recorder-config.js')
-      .then(r=>r.text())
-      .then(s=>eval(s))
-      .then(m=>m.initWithConfig(c)));
+  // ⚠️  Fonctionne seulement si votre site sert les fichiers Makandal
+  const script = document.createElement('script');
+  script.src = '/tools/chrome-recorder-config.js';
+  document.head.appendChild(script);
 })();
+```
+
+### **⚠️ Limitation importante**
+
+**Chrome DevTools ne peut PAS accéder aux fichiers locaux** via `fetch()` pour des raisons de sécurité. 
+
+**Solutions pratiques** :
+1. **🔥 Recommandé** : Copiez-collez le script directement
+2. **🌐 Développement** : Serveur local (`npm run dev`, `python -m http.server`, etc.)
+3. **🚀 Production** : Intégrez Makandal dans votre build
+
+---
+
+## 🛠️ Configurations prêtes à l'emploi
+
+### **Config Wedia/Portal (copier-coller)**
+```javascript
+const wediacConfig = {
+  selectorPriorities: [
+    'portal-action', 'data-portal', 'data-testid', 'aria-label', 'id', 'class'
+  ],
+  dynamicValuePatterns: [
+    { pattern: '^__BVID__', flags: '' },
+    { pattern: '^__bv_popover_', flags: '' },
+    { pattern: '^\\\\d+$', flags: '' }
+  ],
+  dynamicClassPatterns: [
+    { pattern: '^b-\\\\w+-\\\\d+$', flags: '' },
+    { pattern: '^v-\\\\w+-\\\\d+$', flags: '' }
+  ],
+  preferences: { allowTextSelectors: true, maxTextLength: 30 }
+};
+window.MakandalRecorder.initWithConfig(wediacConfig);
+```
+
+### **Config React/Next.js (copier-coller)**
+```javascript
+const reactConfig = {
+  selectorPriorities: [
+    'data-testid', 'data-cy', 'aria-label', 'role', 'id', 'className'
+  ],
+  dynamicValuePatterns: [
+    { pattern: '^\\\\d+$', flags: '' },
+    { pattern: '^react-', flags: '' }
+  ],
+  dynamicClassPatterns: [
+    { pattern: '^css-\\\\w{6,}$', flags: '' },
+    { pattern: '^sc-\\\\w{6,}$', flags: '' },
+    { pattern: '^emotion-\\\\w+$', flags: '' }
+  ],
+  preferences: { allowTextSelectors: true, maxTextLength: 40 }
+};
+window.MakandalRecorder.initWithConfig(reactConfig);
 ```
 
 ---
