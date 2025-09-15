@@ -18,7 +18,7 @@ class MakandalAgent {
   }
 
   async discoverExistingDefinitions() {
-    console.log('🔥 Makandal se réveille et scrute l'horizon...');
+    console.log('🔥 Makandal se reveille et scrute l\'horizon...');
     
     try {
       // Charge la configuration de l'agent
@@ -30,12 +30,12 @@ class MakandalAgent {
         this.config = JSON.parse(cleanConfig);
       }
 
-      console.log('🔍 Je découvre les trésors cachés de vos définitions...');
+      console.log('🔍 Je decouvre les tresors caches de vos definitions...');
       
       // Découverte des définitions existantes selon le prompt 01
       const definitions = await this.executeDiscoveryPrompt();
       
-      console.log(`✅ Découvert ${Object.keys(definitions.elements || {}).length} éléments et ${Object.keys(definitions.urls || {}).length} URLs`);
+      console.log(`✅ Decouvert ${Object.keys(definitions.elements || {}).length} elements et ${Object.keys(definitions.urls || {}).length} URLs`);
       
       return definitions;
     } catch (error) {
