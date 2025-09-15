@@ -1,0 +1,81 @@
+{
+  "name": "Wedia Portal Dev",
+  "description": "Configuration développement avec debug activé",
+  "version": "1.0.0-dev",
+  "team": "Mode développement - Debug complet",
+  
+  "selectorPriorities": [
+    "portal-action",
+    "data-portal",
+    "data-testid", 
+    "data-automation",
+    "data-debug",
+    "aria-label",
+    "id",
+    "class"
+  ],
+  
+  "dynamicValuePatterns": [
+    {
+      "pattern": "^__BVID__",
+      "description": "Bootstrap Vue IDs dynamiques",
+      "flags": ""
+    },
+    {
+      "pattern": "^\\d+$",
+      "description": "IDs purement numériques",
+      "flags": ""
+    }
+  ],
+  
+  "dynamicClassPatterns": [
+    {
+      "pattern": "^b-\\w+-\\d+$",
+      "description": "Bootstrap Vue classes",
+      "flags": ""
+    }
+  ],
+  
+  "stableClassPatterns": [
+    {
+      "pattern": "^portal-",
+      "description": "Classes Portal",
+      "flags": ""
+    },
+    {
+      "pattern": "^btn|^form-|^nav|^card",
+      "description": "Bootstrap base",
+      "flags": ""
+    }
+  ],
+  
+  "preferences": {
+    "allowTextSelectors": true,
+    "maxTextLength": 40,
+    "ignoreHiddenElements": false,
+    "preferDataAttributes": true,
+    "logLevel": "debug",
+    "portalSpecific": {
+      "detectPortalComponents": true,
+      "prioritizeActions": true,
+      "usePortalNaming": true,
+      "debugMode": true,
+      "verboseLogging": true
+    }
+  },
+  
+  "testSelectors": [
+    "portal-action",
+    "data-portal", 
+    "data-debug",
+    ".btn-primary",
+    ".form-control"
+  ],
+  
+  "messages": {
+    "startup": "🛠️ Makandal Portal DEV - Mode debug activé !",
+    "success": "🔍 Debug: Sélecteurs Portal analysés",
+    "test": "🧪 Test DEV Portal complet...",
+    "ready": "💻 Chrome Recorder Portal DEV prêt !"
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "name": "Wedia Portal",
+  "description": "Configuration optimisée pour l'équipe Wedia Portal",
+  "version": "1.0.0",
+  "team": "Équipe Wedia Portal - Configuration officielle",
+  
+  "selectorPriorities": [
+    "portal-action",
+    "data-portal",
+    "data-testid", 
+    "data-automation",
+    "aria-label",
+    "aria-labelledby",
+    "data-cy",
+    "id",
+    "name",
+    "class"
+  ],
+  
+  "dynamicValuePatterns": [
+    {
+      "pattern": "^__BVID__",
+      "description": "Bootstrap Vue IDs dynamiques",
+      "flags": ""
+    },
+    {
+      "pattern": "^__bv_popover_|^__bv_modal_|^__bv_tooltip_",
+      "description": "Bootstrap Vue composants temporaires",
+      "flags": ""
+    },
+    {
+      "pattern": "^\\d+$",
+      "description": "IDs purement numériques",
+      "flags": ""
+    },
+    {
+      "pattern": "_\\d{3,}$|^\\d{4,}",
+      "description": "Suffixes/préfixes numériques longs",
+      "flags": ""
+    },
+    {
+      "pattern": "uuid|guid|token|session",
+      "description": "Identifiants temporaires et sessions",
+      "flags": "i"
+    },
+    {
+      "pattern": "\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}",
+      "description": "Format UUID standard",
+      "flags": ""
+    }
+  ],
+  
+  "dynamicClassPatterns": [
+    {
+      "pattern": "^b-\\w+-\\d+$",
+      "description": "Bootstrap Vue classes générées",
+      "flags": ""
+    },
+    {
+      "pattern": "^v-\\w+-\\d+$",
+      "description": "Vue.js classes dynamiques",
+      "flags": ""
+    },
+    {
+      "pattern": "^\\w+_\\d{6,}$",
+      "description": "Classes avec hash long",
+      "flags": ""
+    },
+    {
+      "pattern": "^portal-temp-\\w+$",
+      "description": "Classes temporaires Portal",
+      "flags": ""
+    }
+  ],
+  
+  "stableClassPatterns": [
+    {
+      "pattern": "^portal-",
+      "description": "Classes Portal officielles",
+      "flags": ""
+    },
+    {
+      "pattern": "^btn",
+      "description": "Boutons Bootstrap",
+      "flags": ""
+    },
+    {
+      "pattern": "^form-",
+      "description": "Éléments de formulaire",
+      "flags": ""
+    },
+    {
+      "pattern": "^nav",
+      "description": "Navigation",
+      "flags": ""
+    },
+    {
+      "pattern": "^card",
+      "description": "Cartes Bootstrap",
+      "flags": ""
+    },
+    {
+      "pattern": "^modal",
+      "description": "Modales",
+      "flags": ""
+    },
+    {
+      "pattern": "^alert",
+      "description": "Alertes",
+      "flags": ""
+    }
+  ],
+  
+  "preferences": {
+    "allowTextSelectors": true,
+    "maxTextLength": 25,
+    "ignoreHiddenElements": true,
+    "preferDataAttributes": true,
+    "logLevel": "info",
+    "portalSpecific": {
+      "detectPortalComponents": true,
+      "prioritizeActions": true,
+      "usePortalNaming": true
+    }
+  },
+  
+  "testSelectors": [
+    "portal-action",
+    "data-portal",
+    "data-testid",
+    ".btn-primary",
+    ".form-control",
+    "[aria-label]",
+    "button[type='submit']"
+  ],
+  
+  "messages": {
+    "startup": "🏛️ Makandal Portal - Configuration Wedia Portal chargée !",
+    "success": "✅ Sélecteurs Portal optimisés",
+    "test": "🧪 Test Wedia Portal en cours...",
+    "ready": "🔥 Chrome Recorder Portal prêt pour l'équipe !"
+  }
+}

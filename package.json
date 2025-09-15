@@ -14,23 +14,32 @@
   "license": "MIT",
   "main": "tools/chrome-to-cucumber-converter.js",
   "bin": {
+    "makandal": "./bin/makandal-cli.js",
     "chrome-to-cucumber": "./tools/chrome-to-cucumber-converter.js",
     "chrome-workflow": "./scripts/chrome-workflow.sh"
   },
   "scripts": {
+    "makandal": "node bin/makandal-cli.js",
+    "makandal:help": "node bin/makandal-cli.js --help",
+    "makandal:portal": "node bin/makandal-cli.js -conf wedia-portal",
+    "makandal:dev": "node bin/makandal-cli.js -conf wedia-portal-dev",
+    "list-configs": "ls -la configs/*.json",
     "convert": "node tools/chrome-to-cucumber-converter.js",
     "improve": "node tools/improve-generated-tests.js",
     "workflow": "./scripts/chrome-workflow.sh",
     "example": "npm run convert examples/example-chrome-recording.json",
     "test": "npm run example",
-    "validate": "node -c tools/chrome-to-cucumber-converter.js && node -c tools/improve-generated-tests.js",
+    "validate": "node -c tools/chrome-to-cucumber-converter.js && node -c bin/makandal-cli.js",
     "docs": "echo 'Documentation disponible dans docs/README-Chrome-Workflow.md'"
   },
   "files": [
+    "bin/",
+    "configs/",
     "tools/",
     "scripts/",
     "docs/",
     "templates/",
+    "generated-scripts/chrome-recorder-template.js",
     "README.md",
     "CHANGELOG.md"
   ],
