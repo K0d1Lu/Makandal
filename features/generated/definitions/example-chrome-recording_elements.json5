@@ -1,0 +1,9 @@
+{
+  // 🔥 Éléments fusionnés intelligemment par Makandal
+  "header pendingdownloads icon": "#header_pendingdownloads_icon",
+  "remove notification": "aria/Remove notification[role=\"link\"]",
+  "click 5788": "li.cw-always-displayed i",
+  "search": "aria/Search[role=\"button\"]",
+  "keywords": "aria/Keywords "
+
+}
