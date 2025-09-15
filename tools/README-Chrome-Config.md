@@ -74,9 +74,10 @@ Le script `chrome-recorder-config.js` génère des sélecteurs **stables et fiab
 1. **Chargez la configuration** :
 ```javascript
 // Dans la console Chrome
-await fetch('./tools/chrome-recorder-config.json')
-  .then(r => r.json())
-  .then(config => window.MakandalRecorder.initWithConfig(config));
+(async () => {
+  const config = await fetch('./tools/chrome-recorder-config.json').then(r => r.json());
+  window.MakandalRecorder.initWithConfig(config);
+})();
 ```
 
 2. **Injectez le script** :
