@@ -1,0 +1,86 @@
+{
+  // Template de définitions d'éléments pour les tests Cucumber
+  // Organisé par sections fonctionnelles
+  
+  // ============ NAVIGATION ============
+  "page container": "#cw-app",
+  "top header": "header.cw-header",
+  "main navigation": "nav.navbar",
+  "back button": ".cw-detail-header-back-button",
+  
+  // ============ AUTHENTIFICATION ============
+  "login form": ".cw-signin",
+  "email field": "input[type='email']",
+  "password field": "input[type='password']", 
+  "connect button": "button[type='submit']",
+  "logout button": "[portal-action='logout']",
+  
+  // ============ RECHERCHE ============
+  "search bar": "#dam-explorer-search-bar",
+  "search button": "[portal-action='search-trigger']",
+  "search results": ".cw-gallery-list",
+  "filters panel": ".cw-filters-panel",
+  "clear search": ".search-input-clear-button",
+  
+  // ============ ASSETS ============
+  "asset card": ".cw-gallery-item",
+  "asset selector": ".cw-checkbox-wrapper input",
+  "asset preview": "[portal-action='dam_item_action-dam/previewAsset']",
+  "download asset": "[portal-action='dam_item_action-dam/downloadAsset']",
+  "asset metadata": ".cw-entity-detail-field",
+  
+  // ============ BOARDS ============
+  "create board button": "[portal-action='content_center-create_board-open']",
+  "board title field": "input[name='title']",
+  "board description": "textarea[name='description']",
+  "save board": "button[type='submit']",
+  "board card": ".cw-board-card",
+  
+  // ============ UPLOAD ============
+  "upload button": "[portal-action='upload-access-header']",
+  "file input": "input[type='file']",
+  "upload progress": ".progress-bar",
+  "upload complete": ".upload-success",
+  
+  // ============ NOTIFICATIONS ============
+  "notification icon": "[portal-action='notifications-access-header']",
+  "notification dropdown": ".cw-notification-dropdown",
+  "success toast": ".toast.toast-success",
+  "error toast": ".toast.toast-error",
+  "close toast": ".toast .close",
+  
+  // ============ MODALS ============
+  "modal": ".modal.show",
+  "modal title": ".modal-title",
+  "modal body": ".modal-body",
+  "modal close": ".modal .close",
+  "confirm button": ".modal button.btn-primary",
+  "cancel button": ".modal button.btn-secondary",
+  
+  // ============ FORMS ============
+  "required field": "input[required]",
+  "valid field": "input.is-valid",
+  "invalid field": "input.is-invalid",
+  "error message": ".invalid-feedback",
+  "submit button": "button[type='submit']",
+  "reset button": "button[type='reset']",
+  
+  // ============ LOADING ============
+  "loader": ".spinner-border",
+  "page loader": ".cw-loader",
+  "loading overlay": ".loading-overlay",
+  
+  // ============ RESPONSIVE ============
+  "mobile menu": ".navbar-toggler",
+  "sidebar": ".sidebar",
+  "main content": ".main-content",
+  
+  // ============ CUSTOM ELEMENTS ============
+  // Ajoutez ici vos éléments spécifiques au projet
+  
+  // Exemple de convention de nommage :
+  // "[section] [type] [action]" : "selector"
+  // "dam search button" : "[portal-action='dam-search-trigger']"
+  // "board create modal" : ".modal[data-context='board-creation']"
+  // "asset delete confirmation" : ".confirm-delete-asset"
+}

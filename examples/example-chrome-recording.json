@@ -1,0 +1,141 @@
+{
+    "title": "test",
+    "steps": [
+        {
+            "type": "setViewport",
+            "width": 1196,
+            "height": 934,
+            "deviceScaleFactor": 1,
+            "isMobile": false,
+            "hasTouch": false,
+            "isLandscape": false
+        },
+        {
+            "type": "navigate",
+            "url": "https://starter-kit.wedia-group.com/dam/wedia/home",
+            "assertedEvents": [
+                {
+                    "type": "navigation",
+                    "url": "https://starter-kit.wedia-group.com/dam/wedia/home",
+                    "title": "Home"
+                }
+            ]
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "#header_pendingdownloads_icon"
+                ],
+                [
+                    "xpath///*[@id=\"header_pendingdownloads_icon\"]"
+                ],
+                [
+                    "pierce/#header_pendingdownloads_icon"
+                ]
+            ],
+            "offsetY": 20.703125,
+            "offsetX": 12
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/Remove notification[role=\"link\"]",
+                    "aria/[role=\"generic\"]"
+                ],
+                [
+                    "div.cw-usernotification--remove i"
+                ],
+                [
+                    "xpath///*[@id=\"__bv_popover_265__\"]/div[2]/div/div/div[2]/div/div/div[3]/a/i"
+                ],
+                [
+                    "pierce/div.cw-usernotification--remove i"
+                ]
+            ],
+            "offsetY": 13,
+            "offsetX": 7.578125
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "li.cw-always-displayed i"
+                ],
+                [
+                    "xpath///*[@id=\"cw-app\"]/header/ul/li[3]/a/i"
+                ],
+                [
+                    "pierce/li.cw-always-displayed i"
+                ]
+            ],
+            "offsetY": 23.703125,
+            "offsetX": 6.5
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "div.cw-menu > div.d-none"
+                ],
+                [
+                    "xpath///*[@id=\"cw-app\"]/div[3]/div[1]"
+                ],
+                [
+                    "pierce/div.cw-menu > div.d-none"
+                ]
+            ],
+            "offsetY": 126,
+            "offsetX": 765
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/Search[role=\"button\"]"
+                ],
+                [
+                    "div.col-2 > button"
+                ],
+                [
+                    "xpath///*[@id=\"cw-app\"]/div[3]/div[1]/div/div/div/div[1]/div/div/div[3]/button"
+                ],
+                [
+                    "pierce/div.col-2 > button"
+                ]
+            ],
+            "offsetY": 33.453125,
+            "offsetX": 102.84375
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/Keywords ",
+                    "aria/[role=\"generic\"]"
+                ],
+                [
+                    "#__BVID__361 span"
+                ],
+                [
+                    "xpath///*[@id=\"__BVID__361__BV_toggle_\"]/span"
+                ],
+                [
+                    "pierce/#__BVID__361 span"
+                ],
+                [
+                    "text/Keywords"
+                ]
+            ],
+            "offsetY": 14.40625,
+            "offsetX": 62.828125
+        }
+    ]
+}

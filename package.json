@@ -1,0 +1,55 @@
+{
+  "name": "@wedia/chrome-recorder-workflow",
+  "version": "1.0.0",
+  "description": "Workflow automatisé pour convertir les enregistrements Chrome DevTools Recorder en tests Cucumber",
+  "keywords": [
+    "chrome-recorder",
+    "cucumber",
+    "e2e-testing",
+    "automation",
+    "wedia",
+    "bdd"
+  ],
+  "author": "Équipe Wedia",
+  "license": "MIT",
+  "main": "tools/chrome-to-cucumber-converter.js",
+  "bin": {
+    "chrome-to-cucumber": "./tools/chrome-to-cucumber-converter.js",
+    "chrome-workflow": "./scripts/chrome-workflow.sh"
+  },
+  "scripts": {
+    "convert": "node tools/chrome-to-cucumber-converter.js",
+    "improve": "node tools/improve-generated-tests.js",
+    "workflow": "./scripts/chrome-workflow.sh",
+    "example": "npm run convert examples/example-chrome-recording.json",
+    "test": "npm run example",
+    "validate": "node -c tools/chrome-to-cucumber-converter.js && node -c tools/improve-generated-tests.js",
+    "docs": "echo 'Documentation disponible dans docs/README-Chrome-Workflow.md'"
+  },
+  "files": [
+    "tools/",
+    "scripts/",
+    "docs/",
+    "templates/",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wedia-group/wedia-demo.git",
+    "directory": "Test/e2e-tests/chrome-recorder-workflow"
+  },
+  "bugs": {
+    "url": "https://github.com/wedia-group/wedia-demo/issues"
+  },
+  "homepage": "https://github.com/wedia-group/wedia-demo#readme",
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {
+    "@cucumber/cucumber": "^12.0.0",
+    "selenium-webdriver": "^4.0.0"
+  }
+}

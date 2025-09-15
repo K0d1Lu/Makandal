@@ -1,0 +1,22 @@
+# Fichiers temporaires générés
+*.tmp
+*.temp
+temp-*
+
+# Logs
+*.log
+npm-debug.log*
+
+# Fichiers de test générés
+*_generated_*
+test-output/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

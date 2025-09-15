@@ -1,0 +1,86 @@
+{
+  // Template de définitions d'URLs pour les tests Cucumber
+  // Organisé par sections fonctionnelles
+  
+  // ============ PAGES PRINCIPALES ============
+  "home page": "/dam/wedia/home",
+  "dam page": "/dam/wedia/browse",
+  "search page": "/dam/wedia/preferences/searches",
+  "notifications page": "/dam/wedia/usernotif",
+  "profile page": "/dam/wedia/profile",
+  
+  // ============ AUTHENTIFICATION ============
+  "signin page": "/dam/wedia/signin",
+  "register page": "/dam/wedia/register",
+  "forgot password page": "/dam/wedia/forgot-password",
+  "terms page": "/dam/wedia/terms-and-conditions",
+  "privacy page": "/dam/wedia/privacy-policy",
+  
+  // ============ DAM / ASSETS ============
+  "all assets": "/dam/wedia/browse/all-assets/",
+  "asset detail": "/dam/wedia/browse/all-assets/asset/{{ASSET_ID}}/",
+  "asset edit": "/dam/wedia/browse/all-assets/asset/{{ASSET_ID}}/edit",
+  "asset versions": "/dam/wedia/browse/all-assets/asset/{{ASSET_ID}}/versions",
+  
+  // ============ BOARDS ============
+  "boards page": "/dam/wedia/boards/",
+  "my boards": "/dam/wedia/boards?boardRole=owner",
+  "board detail": "/dam/wedia/boards/{{BOARD_ID}}/",
+  "board edit": "/dam/wedia/boards/{{BOARD_ID}}/edit",
+  "public boards": "/dam/wedia/boards?visibility=public",
+  
+  // ============ PORTALS ============
+  "portals page": "/dam/wedia/portals/",
+  "portal detail": "/dam/wedia/portals/{{PORTAL_ID}}/",
+  "portal edit": "/dam/wedia/portals/{{PORTAL_ID}}/edit",
+  "portal section": "/dam/wedia/portals/{{PORTAL_ID}}/{{SECTION_ID}}/",
+  
+  // ============ SPACES ============
+  "spaces page": "/dam/wedia/spaces",
+  "space detail": "/dam/wedia/spaces/{{SPACE_ID}}/",
+  "space item": "/dam/wedia/spaces/{{SPACE_ID}}/item/{{ITEM_ID}}",
+  
+  // ============ UPLOAD / IMPORT ============
+  "upload page": "/dam/wedia/upload",
+  "import page": "/dam/wedia/dam-import",
+  "bulk upload": "/dam/wedia/upload/bulk",
+  
+  // ============ ADMIN ============
+  "admin page": "/dam/wedia/admin",
+  "users management": "/dam/wedia/admin/users",
+  "permissions": "/dam/wedia/admin/permissions",
+  "system settings": "/dam/wedia/admin/settings",
+  
+  // ============ API ENDPOINTS ============
+  "api assets": "/api/wedia/assets",
+  "api boards": "/api/wedia/boards", 
+  "api upload": "/api/wedia/upload",
+  "api search": "/api/wedia/search",
+  
+  // ============ EXTERNAL LINKS ============
+  "help documentation": "https://help.wedia.com",
+  "support contact": "https://support.wedia.com",
+  "wedia website": "https://www.wedia.com",
+  
+  // ============ QUERY PARAMETERS ============
+  // Exemples avec paramètres de requête
+  "filtered assets": "/dam/wedia/browse?filter={{FILTER_TYPE}}",
+  "paginated results": "/dam/wedia/browse?page={{PAGE_NUMBER}}",
+  "sorted results": "/dam/wedia/browse?sort={{SORT_FIELD}}&order={{SORT_ORDER}}",
+  
+  // ============ DEEP LINKS ============
+  // URLs avec ancres ou fragments
+  "asset metadata tab": "/dam/wedia/browse/all-assets/asset/{{ASSET_ID}}/#metadata",
+  "asset versions tab": "/dam/wedia/browse/all-assets/asset/{{ASSET_ID}}/#versions",
+  "board settings": "/dam/wedia/boards/{{BOARD_ID}}/#settings",
+  
+  // ============ CUSTOM URLS ============
+  // Ajoutez ici vos URLs spécifiques au projet
+  
+  // Convention de nommage recommandée :
+  // "[section] [action/type] [modifier]" : "url_pattern"
+  // Exemples :
+  // "dam search results": "/dam/wedia/browse?q={{SEARCH_TERM}}"
+  // "board shared link": "/api/wedia/cart/viewShare/{{SHARE_TOKEN}}"
+  // "portal public view": "/dam/wedia/portals/{{PORTAL_ID}}?public=true"
+}
