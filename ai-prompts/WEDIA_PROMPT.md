@@ -1,10 +1,25 @@
 # 🔥 PROMPT MAKANDAL - GÉNÉRATION CHROME RECORDER WEDIA
 
-Copiez-collez ce prompt dans **Cursor Chat** (Cmd+L) pour générer votre script Chrome Recorder optimisé Wedia :
+⚠️ **NOUVELLE VERSION DISPONIBLE !** ⚠️
+
+## 🚀 **Version intelligente recommandée**
+
+Pour une **génération optimisée avec template intelligent**, utilisez :
+👉 **`WEDIA_INTELLIGENT_PROMPT.md`** 👈
+
+**Avantages de la version intelligente :**
+- ⚡ **30 secondes** vs 2 minutes (hydratation template)
+- 🔄 **Cohérence** : Structure stable, variables seulement
+- 💾 **Auto-save** : generated-scripts/wedia-chrome-recorder.js
+- 🎯 **Maintenance** : Évolution par variables
 
 ---
 
-## 📋 **PROMPT À COPIER-COLLER**
+## 📋 **PROMPT LEGACY (Génération complète)**
+
+⚠️ Cette version génère tout le script à chaque fois. Pour usage ponctuel seulement.
+
+Copiez-collez ce prompt dans **Cursor Chat** (Cmd+L) :
 
 ```
 🔥 Génère un script JavaScript complet pour Chrome DevTools Recorder, optimisé pour Wedia Portal

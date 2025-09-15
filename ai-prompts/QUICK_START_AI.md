@@ -14,26 +14,47 @@ cursor .
 ### **🚀 ÉTAPE 3 : Copier-coller ce prompt prêt à l'emploi**
 
 ```
-🔥 PROMPT MAKANDAL - GÉNÉRATION WEDIA 🔥
+🔥 PROMPT MAKANDAL INTELLIGENT - GÉNÉRATION OPTIMISÉE 🔥
 
-Génère un script JavaScript complet pour Chrome DevTools Console, optimisé pour Wedia Portal.
+WORKFLOW INTELLIGENT:
+1. 🔍 Vérifie si script existe: generated-scripts/wedia-chrome-recorder.js
+2. 📋 Si existe → Utilise template + hydrate variables seulement
+3. 🆕 Si n'existe pas → Génère script complet + sauvegarde template
+4. 💾 Export automatique vers: generated-scripts/[PROJECT]-chrome-recorder.js
 
+TEMPLATE INTELLIGENCE:
+- Utilise template de base chrome-recorder-template.js 
+- Hydrate variables: PROJECT_CONFIG, SELECTOR_PRIORITIES, DYNAMIC_PATTERNS
+- Remplace: {{PROJECT_NAME}}, {{MESSAGES}}, {{SPECIFIC_LOGIC}}
+- Garde structure stable, change seulement la configuration
+
+PROJET CIBLE: Wedia Portal
 CONTEXTE:
-- Projet: Wedia Portal (Vue.js + Bootstrap Vue + ClassicWeb)
+- Framework: Vue.js + Bootstrap Vue + ClassicWeb
 - Attributs métier: portal-action, data-portal, data-wedia
-- Problème: Chrome Recorder génère sélecteurs fragiles (__BVID__, classes dynamiques)
+- Problème: Sélecteurs fragiles (__BVID__, classes dynamiques)
 
-REQUIREMENTS:
-✅ Script standalone (pas de fetch/imports)
-✅ Configuration Wedia intégrée
-✅ Sélecteurs prioritaires: portal-action, data-portal, data-testid, aria-label
-✅ Éviter patterns: __BVID__, __bv_*, b-*-*, v-*-*, ^\d+$
-✅ Messages console français avec emojis
-✅ Export window.MakandalRecorder
-✅ Fonction test() pour validation
-✅ Code moderne (ES6+, documenté)
+VARIABLES À HYDRATER:
+✅ PROJECT_NAME: "Wedia Portal"
+✅ SELECTOR_PRIORITIES: ["portal-action", "data-portal", "data-testid", "aria-label"]
+✅ DYNAMIC_PATTERNS: ["__BVID__", "__bv_*", "b-*-*", "v-*-*", "^\\d+$"]
+✅ MESSAGES: Français avec emojis Wedia-spécifiques
+✅ SPECIFIC_LOGIC: Détection composants CW, modales Portal
+✅ EXPORT_NAME: "window.MakandalRecorder"
+✅ TEST_ELEMENTS: Éléments typiques Wedia pour test()
 
-OUTPUT: Script prêt pour Chrome Console (copier-coller direct)
+OPTIMISATIONS:
+🎯 Si template existe → Hydratation rapide (30 sec)
+🆕 Si nouveau projet → Génération complète + template (2 min)
+💾 Auto-save vers generated-scripts/wedia-chrome-recorder.js
+🔄 Versioning: garde ancienne version en .backup
+📝 Comments auto: date génération, projet, variables changées
+
+OUTPUT: 
+1. Script hydraté prêt pour Chrome Console
+2. Fichier sauvé automatiquement  
+3. Template réutilisable pour futures modifications
+4. Instructions de récupération et usage
 ```
 
 ### **🚀 ÉTAPE 4 : Copier le résultat**
