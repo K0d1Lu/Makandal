@@ -1,18 +1,37 @@
-# Fichiers temporaires générés
+# Dependencies
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Build outputs
+dist/
+build/
+out/
+
+# Temporary files
 *.tmp
 *.temp
 temp-*
+*_temp.*
+
+# Generated test files
+*_generated_*
+test-output/
+examples/*_elements.json5
+examples/*_urls.json5
+examples/*.feature
 
 # Logs
 *.log
-npm-debug.log*
-
-# Fichiers de test générés
-*_generated_*
-test-output/
+logs/
 
 # OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
 # IDE
@@ -20,3 +39,17 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+*.vim
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Cache
+.cache/
+.parcel-cache/
+.nyc_output/
+coverage/
