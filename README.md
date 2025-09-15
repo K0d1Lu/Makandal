@@ -16,11 +16,21 @@ npm install
 # 🔥 ÉTAPE 1: Générer script Chrome Recorder
 npm run makandal:portal
 
-# 🎯 ÉTAPE 2: Convertir JSON → Cucumber 
+# 🎯 ÉTAPE 2A: Conversion automatique (rapide)
 ./bin/convert-recording.sh mon-enregistrement.json
+
+# 🤖 ÉTAPE 2B: Prompt IA haute qualité (recommandé)
+npm run hi-makandal → Option 4 → Cursor Chat
 ```
 
-**🎉 C'est tout ! Votre test Cucumber est prêt !**
+**🎉 Deux approches, même simplicité !**
+
+### 🆚 Quelle approche choisir ?
+
+| Approche | Temps | Qualité | Usage |
+|----------|-------|---------|--------|
+| **2A - Auto** | ⚡ 10 sec | ⭐⭐ Basique | Prototypage rapide |
+| **2B - IA** | ⏱️ 1 min | ⭐⭐⭐⭐⭐ Premium | Tests production |
 
 ## 🎯 Workflow détaillé pour l'équipe
 
@@ -39,7 +49,7 @@ npm run makandal:portal
 5. **Enregistrer** votre scénario utilisateur
 6. **Exporter** → JSON → Sauvegarder dans `recordings/`
 
-### 🎯 ÉTAPE 2: Conversion vers Cucumber
+### 🎯 ÉTAPE 2A: Conversion automatique (rapide)
 
 ```bash
 # Placer votre fichier JSON dans le dossier recordings/
@@ -56,6 +66,28 @@ npm run makandal:portal
 - **Features** : `features/generated/mon-test-login.feature`
 - **Définitions** : `features/generated/definitions/`
 
+### 🤖 ÉTAPE 2B: Prompt IA haute qualité (recommandé)
+
+```bash
+# CLI interactif Makandal
+npm run hi-makandal
+
+# Menu → Option 4: 🤖 Générer prompt Cursor IA
+# Sélectionnez votre recording JSON
+# Prompt généré dans: generated-prompts/
+```
+
+**🎯 Utilisation Cursor Chat :**
+1. **Ouvrir** Cursor Chat (`Cmd+L`)
+2. **Copier** contenu du prompt `.md`
+3. **Coller** et envoyer à l'IA
+4. **Récupérer** les 3 fichiers générés :
+   - 📝 `test.feature` (Gherkin premium)
+   - 🎯 `test_elements.json5` (Sélecteurs optimisés)  
+   - 🔗 `test_urls.json5` (URLs fonctionnelles)
+
+**🔥 Bonus :** Includes **Visual Regression** automatique ! 📸
+
 ## 📦 Scripts npm disponibles
 
 ### 🔥 Scripts Makandal (Étape 1)
@@ -66,13 +98,20 @@ npm run makandal:portal
 | `npm run makandal:help` | **Aide** | Liste des configs disponibles |
 | `npm run list-configs` | **Info** | Voir toutes les configurations |
 
-### 🎯 Scripts Conversion (Étape 2)
+### 🎯 Scripts Conversion (Étape 2A - Auto)  
 | Script | Usage | Description |
 |--------|--------|-------------|
 | `./bin/convert-recording.sh <nom>.json` | **Conversion** | Chrome JSON → Cucumber |
 | `./bin/convert-recording.sh <nom>.json workflow` | **Workflow** | Conversion + organisation |
 | `npm run recordings` | **Liste** | Voir fichiers dans recordings/ |
 | `npm run convert:file` | **Aide** | Usage et fichiers disponibles |
+
+### 🤖 Scripts IA Premium (Étape 2B - IA)
+| Script | Usage | Description |
+|--------|--------|-------------|
+| `npm run hi-makandal` | **Interface** | CLI interactif avec toutes options |
+| `npm run generate-prompt <nom>.json` | **Direct** | Générer prompt Cursor |
+| **Option 4 dans hi-makandal** | **Recommandé** | Prompt IA guidé + Visual Regression |
 
 ### 🛠️ Scripts Utilitaires
 | Script | Usage | Description |
@@ -95,6 +134,8 @@ chrome-recorder-workflow/
 ├── 📁 generated-scripts/   # Scripts Chrome générés
 │   ├── 📜 chrome-recorder-template.js  # Template IA
 │   └── 🎯 chrome-recorder-*.js         # Scripts personnalisés
+├── 📁 generated-prompts/   # 🤖 PROMPTS IA CURSOR
+│   └── 📝 *-cursor-prompt.md           # Prompts haute qualité
 ├── 📁 features/generated/  # 📤 VOS TESTS CUCUMBER ICI
 │   ├── 📝 *.feature                    # Tests Gherkin générés
 │   └── 📁 definitions/                 # Définitions éléments/URLs

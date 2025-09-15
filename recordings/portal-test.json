@@ -1,0 +1,275 @@
+{
+    "title": "tri portals",
+    "steps": [
+        {
+            "type": "setViewport",
+            "width": 1909,
+            "height": 934,
+            "deviceScaleFactor": 1,
+            "isMobile": false,
+            "hasTouch": false,
+            "isLandscape": false
+        },
+        {
+            "type": "navigate",
+            "url": "https://starter-kit.wedia-group.com/dam/wedia/portals/?orderby=modified%20desc&query=%7B%22or%3Aportalactive.true%22%3A%7B%22activated%22%3A%7B%22eq%22%3Atrue%7D%7D%7D",
+            "assertedEvents": [
+                {
+                    "type": "navigation",
+                    "url": "https://starter-kit.wedia-group.com/dam/wedia/portals/?orderby=modified%20desc&query=%7B%22or%3Aportalactive.true%22%3A%7B%22activated%22%3A%7B%22eq%22%3Atrue%7D%7D%7D",
+                    "title": "Wedia - Portal - Starter Kit"
+                }
+            ]
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "div.b-overlay > div:nth-of-type(2)"
+                ],
+                [
+                    "xpath///*[@id=\"cw-app\"]/div[3]/div[3]/div[2]/div/div/div[3]/div[1]/div/div/a/div/div/div[3]/div[2]"
+                ],
+                [
+                    "pierce/div.b-overlay > div:nth-of-type(2)"
+                ]
+            ],
+            "offsetY": 75.328125,
+            "offsetX": 136.03125
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/ Editer le portail[role=\"link\"]"
+                ],
+                [
+                    "div.cw-lp-content--body-header-actions a"
+                ],
+                [
+                    "xpath///*[@id=\"cw-app\"]/div[3]/div/div/div/div/div[1]/div[2]/div[2]/button[1]/a"
+                ],
+                [
+                    "pierce/div.cw-lp-content--body-header-actions a"
+                ]
+            ],
+            "offsetY": 25.78125,
+            "offsetX": 145.25
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "#__BVID__1136 > div > div:nth-of-type(1) span"
+                ],
+                [
+                    "xpath///*[@id=\"__BVID__1136\"]/div/div[1]/div[1]/span"
+                ],
+                [
+                    "pierce/#__BVID__1136 > div > div:nth-of-type(1) span"
+                ],
+                [
+                    "text/Assets"
+                ]
+            ],
+            "offsetY": 9.40625,
+            "offsetX": 19
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/"
+                ],
+                [
+                    "div.cw-lp-content--body button:nth-of-type(3)"
+                ],
+                [
+                    "xpath///*[@id=\"__bv_popover_1969__\"]/div[2]/div/button[3]"
+                ],
+                [
+                    "pierce/div.cw-lp-content--body button:nth-of-type(3)"
+                ]
+            ],
+            "offsetY": 30.640625,
+            "offsetX": 18.21875
+        },
+        {
+            "type": "doubleClick",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/Titre de la section *"
+                ],
+                [
+                    "#name"
+                ],
+                [
+                    "xpath///*[@id=\"name\"]"
+                ],
+                [
+                    "pierce/#name"
+                ]
+            ],
+            "offsetY": 22.5,
+            "offsetX": 62
+        },
+        {
+            "type": "keyDown",
+            "target": "main",
+            "key": "ArrowRight"
+        },
+        {
+            "type": "keyUp",
+            "key": "ArrowRight",
+            "target": "main"
+        },
+        {
+            "type": "change",
+            "value": "Assets test",
+            "selectors": [
+                [
+                    "aria/Titre de la section *"
+                ],
+                [
+                    "#name"
+                ],
+                [
+                    "xpath///*[@id=\"name\"]"
+                ],
+                [
+                    "pierce/#name"
+                ]
+            ],
+            "target": "main"
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/Confirmer",
+                    "aria/[role=\"generic\"]"
+                ],
+                [
+                    "button.btn-secondary > div"
+                ],
+                [
+                    "xpath///*[@id=\"__BVID__2328___BV_modal_footer_\"]/button[2]/div"
+                ],
+                [
+                    "pierce/button.btn-secondary > div"
+                ],
+                [
+                    "text/Confirmer"
+                ]
+            ],
+            "offsetY": 14.3125,
+            "offsetX": 43.640625
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/"
+                ],
+                [
+                    "div.cw-lp-content--body button:nth-of-type(3)"
+                ],
+                [
+                    "xpath///*[@id=\"__bv_popover_1969__\"]/div[2]/div/button[3]"
+                ],
+                [
+                    "pierce/div.cw-lp-content--body button:nth-of-type(3)"
+                ]
+            ],
+            "offsetY": 25.640625,
+            "offsetX": 28.21875
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "#__BVID__3591 li:nth-of-type(3) div"
+                ],
+                [
+                    "xpath///*[@id=\"__BVID__3617___BV_tab_button__\"]/div"
+                ],
+                [
+                    "pierce/#__BVID__3591 li:nth-of-type(3) div"
+                ]
+            ],
+            "offsetY": 11.703125,
+            "offsetX": 5.984375
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/Titre de la section *"
+                ],
+                [
+                    "#namefr"
+                ],
+                [
+                    "xpath///*[@id=\"namefr\"]"
+                ],
+                [
+                    "pierce/#namefr"
+                ]
+            ],
+            "offsetY": 14.703125,
+            "offsetX": 167
+        },
+        {
+            "type": "change",
+            "value": "Médias fr",
+            "selectors": [
+                [
+                    "aria/Titre de la section *"
+                ],
+                [
+                    "#namefr"
+                ],
+                [
+                    "xpath///*[@id=\"namefr\"]"
+                ],
+                [
+                    "pierce/#namefr"
+                ]
+            ],
+            "target": "main"
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/Confirmer",
+                    "aria/[role=\"generic\"]"
+                ],
+                [
+                    "button.btn-secondary > div"
+                ],
+                [
+                    "xpath///*[@id=\"__BVID__3581___BV_modal_footer_\"]/button[2]/div"
+                ],
+                [
+                    "pierce/button.btn-secondary > div"
+                ],
+                [
+                    "text/Confirmer"
+                ]
+            ],
+            "offsetY": 13.3125,
+            "offsetX": 57.640625
+        }
+    ]
+}

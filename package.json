@@ -19,6 +19,8 @@
     "chrome-workflow": "./scripts/chrome-workflow.sh"
   },
   "scripts": {
+    "hi": "npm run hi-makandal",
+    "hi-makandal": "node bin/hi-makandal.js",
     "makandal": "node bin/makandal-cli.js",
     "makandal:help": "node bin/makandal-cli.js --help",
     "makandal:portal": "node bin/makandal-cli.js -conf wedia-portal",
@@ -35,7 +37,8 @@
     "example": "npm run convert examples/example-chrome-recording.json",
     "test": "npm run example",
     "validate": "node -c tools/chrome-to-cucumber-converter.js && node -c bin/makandal-cli.js",
-    "docs": "echo 'Documentation disponible dans docs/CLI_USAGE.md'"
+    "docs": "echo 'Documentation disponible dans docs/CLI_USAGE.md'",
+    "generate-prompt": "node tools/cursor-prompt-generator.js"
   },
   "files": [
     "bin/",
