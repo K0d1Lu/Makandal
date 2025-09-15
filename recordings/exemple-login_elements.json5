@@ -1,0 +1,9 @@
+{
+  // 🔥 Éléments fusionnés intelligemment par Makandal
+  "email field": "#email-field",
+  "type 6849": "input[data-testid='email-input']",
+  "password field": "#password-field",
+  "login btn": "#login-btn",
+  "dashboard": "#dashboard"
+
+}

@@ -1,0 +1,68 @@
+{
+  "title": "Exemple Login Portal",
+  "steps": [
+    {
+      "type": "setViewport",
+      "width": 1200,
+      "height": 800
+    },
+    {
+      "type": "navigate",
+      "url": "https://portal.wedia.com/login"
+    },
+    {
+      "type": "click",
+      "target": "main",
+      "selectors": [
+        ["input[data-testid='email-input']"],
+        ["#email-field"],
+        [".login-email"]
+      ],
+      "offsetX": 100,
+      "offsetY": 20
+    },
+    {
+      "type": "type",
+      "target": "main",
+      "selectors": [
+        ["input[data-testid='email-input']"]
+      ],
+      "text": "admin@wedia.com"
+    },
+    {
+      "type": "click",
+      "target": "main", 
+      "selectors": [
+        ["input[data-testid='password-input']"],
+        ["#password-field"],
+        [".login-password"]
+      ]
+    },
+    {
+      "type": "type",
+      "target": "main",
+      "selectors": [
+        ["input[data-testid='password-input']"]
+      ],
+      "text": "admin123"
+    },
+    {
+      "type": "click",
+      "target": "main",
+      "selectors": [
+        ["button[portal-action='login']"],
+        ["button[data-testid='login-button']"],
+        ["#login-btn"],
+        [".btn-login"]
+      ]
+    },
+    {
+      "type": "waitForElement",
+      "selectors": [
+        ["[data-portal='dashboard']"],
+        ["#dashboard"],
+        [".dashboard-container"]
+      ]
+    }
+  ]
+}

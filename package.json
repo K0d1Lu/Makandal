@@ -25,12 +25,17 @@
     "makandal:dev": "node bin/makandal-cli.js -conf wedia-portal-dev",
     "list-configs": "ls -la configs/*.json",
     "convert": "node tools/chrome-to-cucumber-converter.js",
-    "improve": "node tools/improve-generated-tests.js",
+    "convert:file": "./bin/convert-recording.sh",
+    "convert:json": "./bin/convert-recording.sh",
+    "workflow:file": "./bin/convert-recording.sh \"$1\" workflow || ./bin/convert-recording.sh",
+    "workflow:json": "./bin/convert-recording.sh \"$1\" workflow || ./bin/convert-recording.sh",
+    "recordings": "ls -la recordings/",
     "workflow": "./scripts/chrome-workflow.sh",
+    "improve": "node tools/improve-generated-tests.js",
     "example": "npm run convert examples/example-chrome-recording.json",
     "test": "npm run example",
     "validate": "node -c tools/chrome-to-cucumber-converter.js && node -c bin/makandal-cli.js",
-    "docs": "echo 'Documentation disponible dans docs/README-Chrome-Workflow.md'"
+    "docs": "echo 'Documentation disponible dans docs/CLI_USAGE.md'"
   },
   "files": [
     "bin/",
