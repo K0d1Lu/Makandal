@@ -17,31 +17,37 @@
 (function() {
   'use strict';
   
-  console.log('🔥 Chargement Makandal - {{PROJECT_NAME}}...');
+  // IA: Remplace "TEMPLATE_PROJECT" par le nom du projet
+  console.log('🔥 Chargement Makandal - TEMPLATE_PROJECT...');
 
-  // 🎯 Configuration spécialisée {{PROJECT_NAME}}
+  // 🎯 Configuration spécialisée (IA: remplace les valeurs ci-dessous)
   const PROJECT_CONFIG = {
-    name: '{{PROJECT_NAME}} - Généré par IA le {{GENERATION_DATE}}',
-    description: '{{PROJECT_DESCRIPTION}}',
+    // IA: Remplace ces valeurs
+    name: 'TEMPLATE_PROJECT - Généré par IA le TEMPLATE_DATE',
+    description: 'TEMPLATE_DESCRIPTION',
     
-    // Priorité des sélecteurs pour {{PROJECT_NAME}}
-    selectorPriorities: {{SELECTOR_PRIORITIES}},
+    // IA: Remplace par array des sélecteurs prioritaires du projet
+    selectorPriorities: ['data-testid', 'aria-label', 'id', 'class'],
     
-    // Patterns de valeurs dynamiques à éviter (spécifiques {{PROJECT_NAME}})
-    dynamicValuePatterns: {{DYNAMIC_VALUE_PATTERNS}},
+    // IA: Remplace par patterns spécifiques au projet
+    dynamicValuePatterns: [
+      { pattern: '^\\d+$', flags: '', description: 'IDs numériques' }
+    ],
     
-    // Classes CSS dynamiques à éviter ({{PROJECT_NAME}})
-    dynamicClassPatterns: {{DYNAMIC_CLASS_PATTERNS}},
+    // IA: Remplace par classes dynamiques du projet
+    dynamicClassPatterns: [
+      { pattern: '^css-\\w{6,}$', flags: '', description: 'CSS-in-JS' }
+    ],
     
-    // Préférences spéciales {{PROJECT_NAME}}
+    // Préférences par défaut (IA: ajuste selon besoin)
     preferences: {
       allowTextSelectors: true,
       maxTextLength: 30,
       ignoreHiddenElements: true,
       preferDataAttributes: true,
       projectSpecific: {
-        // Variables spécifiques remplacées par IA
-        {{SPECIFIC_PREFERENCES}}
+        // IA: Ajoute propriétés spécifiques ici
+        detectFrameworkComponents: true
       }
     }
   };
@@ -81,28 +87,30 @@
       }
     }
 
-    // 1️⃣ Priorité aux attributs métier {{PROJECT_NAME}}
+    // 1️⃣ Priorité aux attributs métier projet
     for (const attr of PROJECT_CONFIG.selectorPriorities) {
       const value = element.getAttribute(attr);
       if (value && !isDynamicValue(value)) {
-        // Logique spécifique {{PROJECT_NAME}} générée par IA
-        {{SPECIFIC_SELECTOR_LOGIC}}
+        // IA: Ajoute logique spécifique au projet ici
+        if (attr === 'data-testid') {
+          console.log('🎯 Test ID trouvé:', value);
+        }
         return `[${attr}="${value}"]`;
       }
     }
 
-    // 2️⃣ Classes CSS stables (filtrage {{PROJECT_NAME}})
+    // 2️⃣ Classes CSS stables (filtrage projet)
     const classList = Array.from(element.classList)
       .filter(cls => !isDynamicClass(cls))
       .filter(cls => isProjectStableClass(cls));
     
     if (classList.length > 0) {
       const classSelector = `.${classList.join('.')}`;
-      console.log('🎨 Sélecteur classes stables {{PROJECT_NAME}}:', classSelector);
+      console.log('🎨 Sélecteur classes stables:', classSelector);
       return classSelector;
     }
 
-    // 3️⃣ Sélecteur par texte (optimisé {{PROJECT_NAME}})
+    // 3️⃣ Sélecteur par texte (optimisé projet)
     if (PROJECT_CONFIG.preferences.allowTextSelectors) {
       const textContent = element.textContent?.trim();
       const maxLength = PROJECT_CONFIG.preferences.maxTextLength;
@@ -111,12 +119,12 @@
           textContent.length <= maxLength && 
           isUniqueText(textContent) &&
           isProjectRelevantText(textContent)) {
-        console.log('📝 Sélecteur texte {{PROJECT_NAME}}:', textContent);
+        console.log('📝 Sélecteur texte projet:', textContent);
         return `text/${textContent}`;
       }
     }
 
-    // 4️⃣ Fallback intelligent {{PROJECT_NAME}}
+    // 4️⃣ Fallback intelligent projet
     return generateProjectFallback(element);
   }
 
@@ -130,14 +138,31 @@
     return compiledClassPatterns.some(pattern => pattern.test(className));
   }
 
-  // ✅ Classes stables spécifiques {{PROJECT_NAME}} (remplacées par IA)
+  // ✅ Classes stables spécifiques projet (IA: remplace cette logique)
   function isProjectStableClass(className) {
-    {{PROJECT_STABLE_CLASS_LOGIC}}
+    // IA: Remplace par logique spécifique au projet
+    const stablePatterns = [
+      /^btn/,           // Boutons
+      /^form/,          // Formulaires
+      /^nav/,           // Navigation
+      /^card/,          // Cartes
+      /^modal/,         // Modales
+      /^alert/          // Alertes
+    ];
+    return stablePatterns.some(pattern => pattern.test(className));
   }
 
-  // 📝 Validation texte pertinent {{PROJECT_NAME}} (remplacé par IA)
+  // 📝 Validation texte pertinent projet (IA: remplace cette logique)
   function isProjectRelevantText(text) {
-    {{PROJECT_TEXT_VALIDATION_LOGIC}}
+    // IA: Remplace par validation spécifique au projet
+    const irrelevantPatterns = [
+      /^\d+$/,          // Nombres seuls
+      /^[A-Z]{1,3}$/,   // Acronymes courts
+      /^\s*$/,          // Espaces
+      /^\.{3,}$/,       // Points de suspension
+      /^-+$/            // Tirets
+    ];
+    return !irrelevantPatterns.some(pattern => pattern.test(text));
   }
 
   // 🔍 Vérification unicité texte
@@ -160,20 +185,51 @@
     }
   }
 
-  // 🆘 Fallback intelligent {{PROJECT_NAME}} (remplacé par IA)
+  // 🆘 Fallback intelligent projet (IA: remplace cette logique)
   function generateProjectFallback(element) {
-    {{PROJECT_FALLBACK_LOGIC}}
+    // IA: Remplace par logique fallback spécifique au projet
+    const tagName = element.tagName.toLowerCase();
+    
+    switch (tagName) {
+      case 'button':
+        const type = element.type;
+        if (type && type !== 'button') return `button[type="${type}"]`;
+        return 'button';
+        
+      case 'input':
+        const inputType = element.type || 'text';
+        return `input[type="${inputType}"]`;
+        
+      case 'a':
+        const href = element.href;
+        if (href && href.length < 50 && !href.includes('javascript:')) {
+          return `a[href="${href}"]`;
+        }
+        return 'a';
+        
+      default:
+        return tagName;
+    }
   }
 
-  // Fonctions spécialisées {{PROJECT_NAME}} générées par IA
-  {{PROJECT_SPECIFIC_FUNCTIONS}}
+  // Fonctions spécialisées projet (IA: ajoute fonctions spécifiques ici)
+  function detectProjectComponent(element) {
+    // IA: Remplace par détection spécifique au projet
+    return element.className.match(/project-[\w-]+/)?.[0] || null;
+  }
 
   // 🧪 Fonction de test pour validation
   function test() {
-    console.log('🧪 Test Makandal pour {{PROJECT_NAME}}...');
+    console.log('🧪 Test Makandal pour projet...');
     
-    // Test sur éléments typiques {{PROJECT_NAME}} (remplacé par IA)
-    const testSelectors = {{TEST_ELEMENTS}};
+    // Test sur éléments typiques projet (IA: remplace cette liste)
+    const testSelectors = [
+      'data-testid',
+      'aria-label',
+      '.btn',
+      '.form-control',
+      'button[type="submit"]'
+    ];
     
     let found = 0;
     testSelectors.forEach(selector => {
@@ -197,8 +253,13 @@
   function init() {
     compilePatterns();
     
-    // Messages personnalisés {{PROJECT_NAME}} (remplacés par IA)
-    {{MESSAGES}}
+    // Messages personnalisés projet (IA: remplace ces messages)
+    console.log('🎯 Makandal Chrome Recorder activé pour projet !');
+    console.log('📋 Sélecteurs prioritaires:', PROJECT_CONFIG.selectorPriorities.slice(0, 4));
+    console.log('🚫 Patterns dynamiques détectés:', {
+      valeurs: PROJECT_CONFIG.dynamicValuePatterns.length,
+      classes: PROJECT_CONFIG.dynamicClassPatterns.length
+    });
     
     // Export global pour utilisation
     window.MakandalRecorder = {
@@ -208,11 +269,12 @@
       isProjectStableClass,
       CONFIG: PROJECT_CONFIG,
       test,
-      version: '2.0.0-template-{{GENERATION_DATE}}',
-      project: '{{PROJECT_NAME}}'
+      detectProjectComponent,
+      version: '2.0.0-template', // IA: remplace par date génération
+      project: 'TEMPLATE_PROJECT' // IA: remplace par nom projet
     };
     
-    console.log('🔥 window.MakandalRecorder disponible pour {{PROJECT_NAME}} !');
+    console.log('🔥 window.MakandalRecorder disponible pour projet !');
     console.log('💡 Tapez MakandalRecorder.test() pour valider');
   }
 
@@ -221,5 +283,5 @@
 
 })();
 
-// 🎉 Script Makandal pour {{PROJECT_NAME}} - Template hydraté par IA - {{GENERATION_DATE}}
-console.log('⚔️ "François Makandal guide l\'optimisation de {{PROJECT_NAME}} !" ⚔️');
+// 🎉 Script Makandal pour projet - Template hydraté par IA
+console.log('⚔️ "François Makandal guide l\'optimisation de vos sélecteurs !" ⚔️');
