@@ -7,30 +7,29 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 [![AI-First](https://img.shields.io/badge/paradigm-AI--First-purple.svg)](#)
 
-## ⚡ Workflow ultra-rapide (2 étapes)
+## ⚡ Workflow révolutionnaire Agent-First (2 étapes)
 
 ```bash
-# 📦 Installation (une seule fois)
-npm install
+# 📦 Installation + Configuration (une seule fois)
+npm install && npm run env-setup
 
 # 🔥 ÉTAPE 1: Générer script Chrome Recorder
 npm run makandal:portal
 
-# 🎯 ÉTAPE 2A: Conversion automatique (rapide)
+# 🤖 ÉTAPE 2: Agent AI intègre automatiquement dans wedia_demo !
 ./bin/convert-recording.sh mon-enregistrement.json
-
-# 🤖 ÉTAPE 2B: Prompt IA haute qualité (recommandé)
-npm run hi-makandal → Option 4 → Cursor Chat
+# OU pour prompts IA premium: npm run hi-makandal → Option 4
 ```
 
-**🎉 Deux approches, même simplicité !**
+**🚀 RÉVOLUTION : Agent AI intègre directement dans wedia_demo !**
 
-### 🆚 Quelle approche choisir ?
+### 🆚 Comparaison workflows
 
-| Approche | Temps | Qualité | Usage |
-|----------|-------|---------|--------|
-| **2A - Auto** | ⚡ 10 sec | ⭐⭐ Basique | Prototypage rapide |
-| **2B - IA** | ⏱️ 1 min | ⭐⭐⭐⭐⭐ Premium | Tests production |
+| Approche | Temps | Qualité | Intégration | Usage |
+|----------|-------|---------|-------------|--------|
+| **Agent Auto** | ⚡ 15 sec | ⭐⭐⭐ Bon | 🤖 Automatique | Prototypage |
+| **Agent + IA** | ⏱️ 1 min | ⭐⭐⭐⭐⭐ Premium | 🤖 Automatique | Production |
+| **Manuel (ancien)** | ⏰ 5 min | ⭐⭐ Basique | 😰 Copie manuelle | Obsolète |
 
 ## 🎯 Workflow détaillé pour l'équipe
 
@@ -49,44 +48,44 @@ npm run makandal:portal
 5. **Enregistrer** votre scénario utilisateur
 6. **Exporter** → JSON → Sauvegarder dans `recordings/`
 
-### 🎯 ÉTAPE 2A: Conversion automatique (rapide)
+### 🤖 ÉTAPE 2A: Agent AI - Conversion automatique
 
 ```bash
-# Placer votre fichier JSON dans le dossier recordings/
+# Placer votre fichier JSON dans recordings/
 # Exemple: recordings/mon-test-login.json
 
-# Convertir en test Cucumber
+# 🚀 Agent AI intègre automatiquement dans wedia_demo !
 ./bin/convert-recording.sh mon-test-login.json
-
-# Ou workflow complet avec organisation  
-./bin/convert-recording.sh mon-test-login.json workflow
 ```
 
-**📂 Où trouver vos tests générés :**
-- **Features** : `features/generated/mon-test-login.feature`
-- **Définitions** : `features/generated/definitions/`
+**🤖 L'Agent AI fait automatiquement :**
+- ✅ Configure l'environnement (.env)
+- ✅ Convertit JSON → Gherkin + Définitions
+- ✅ Crée dossier `wedia_demo/features/generated/` 
+- ✅ Intègre `.feature` dans `wedia_demo/features/generated/`
+- ✅ Intègre définitions dans `wedia_demo/definitions/`
+- ✅ Crée backups si fichiers existants
 
-### 🤖 ÉTAPE 2B: Prompt IA haute qualité (recommandé)
+**📂 Vos tests sont directement dans wedia_demo ! Plus de copie manuelle !**
+
+### 🤖 ÉTAPE 2B: Agent AI + Prompts IA Premium
 
 ```bash
-# CLI interactif Makandal
+# CLI interactif Agent AI
 npm run hi-makandal
 
-# Menu → Option 4: 🤖 Générer prompt Cursor IA
-# Sélectionnez votre recording JSON
-# Prompt généré dans: generated-prompts/
+# Option 4: 🤖 Générer prompt Cursor IA
+# Option 5: 🏛️ Agent - Intégrer fichiers générés
 ```
 
-**🎯 Utilisation Cursor Chat :**
-1. **Ouvrir** Cursor Chat (`Cmd+L`)
-2. **Copier** contenu du prompt `.md`
-3. **Coller** et envoyer à l'IA
-4. **Récupérer** les 3 fichiers générés :
-   - 📝 `test.feature` (Gherkin premium)
-   - 🎯 `test_elements.json5` (Sélecteurs optimisés)  
-   - 🔗 `test_urls.json5` (URLs fonctionnelles)
+**🎯 Workflow Cursor + Agent AI :**
+1. **Option 4** → Génère prompt contextualisé
+2. **Cursor Chat** (`Cmd+L`) → Colle prompt → Réponds questions contexte
+3. **Cursor génère** 3 fichiers premium avec Visual Regression
+4. **Sauve** fichiers dans dossier temporaire
+5. **Option 5** → Agent AI intègre automatiquement dans wedia_demo
 
-**🔥 Bonus :** Includes **Visual Regression** automatique ! 📸
+**🔥 Révolution :** Agent AI + IA Premium + Visual Regression ! 📸
 
 ## 📦 Scripts npm disponibles
 
@@ -106,12 +105,23 @@ npm run hi-makandal
 | `npm run recordings` | **Liste** | Voir fichiers dans recordings/ |
 | `npm run convert:file` | **Aide** | Usage et fichiers disponibles |
 
-### 🤖 Scripts IA Premium (Étape 2B - IA)
+### 🤖 Scripts Agent AI révolutionnaires (Étape 2)
 | Script | Usage | Description |
 |--------|--------|-------------|
-| `npm run hi-makandal` | **Interface** | CLI interactif avec toutes options |
-| `npm run generate-prompt <nom>.json` | **Direct** | Générer prompt Cursor |
-| **Option 4 dans hi-makandal** | **Recommandé** | Prompt IA guidé + Visual Regression |
+| `npm run hi-makandal` | **Agent Interface** | CLI Agent AI avec 6 options révolutionnaires |
+| `./bin/convert-recording.sh <nom>.json` | **Agent Auto** | Conversion + intégration wedia_demo automatique |
+| `npm run agent-integrate <dossier>` | **Agent Import** | Intégrer fichiers Cursor → wedia_demo |
+| `npm run env-setup` | **Agent Config** | Configuration environnement Agent AI |
+
+### 🎯 Options hi-makandal Agent AI
+| Option | Titre | Action |
+|--------|-------|--------|
+| **1** | 🔥 Générer script Chrome | Scripts Chrome optimisés |
+| **2** | 📁 Voir recordings | Lister exports JSON |
+| **3** | 🎯 Convertir recording (Agent AI) | JSON → wedia_demo direct |
+| **4** | 🤖 Générer prompt Cursor IA | Recording → Prompt premium |
+| **5** | 🏛️ Agent - Intégrer fichiers | Cursor → wedia_demo auto |
+| **6** | ⚙️ Configuration environnement | Setup .env Agent AI |
 
 ### 🛠️ Scripts Utilitaires
 | Script | Usage | Description |
@@ -124,25 +134,34 @@ npm run hi-makandal
 
 ```
 chrome-recorder-workflow/
-├── 📁 bin/                 # CLI Makandal
-│   └── ⚔️ makandal-cli.js              # CLI principal
+├── 📁 bin/                 # CLI Makandal + scripts
 ├── 📁 configs/             # Configurations équipe
 │   ├── 🏛️ wedia-portal.json            # Config Portal production
-│   └── 🛠️ wedia-portal-dev.json        # Config Portal développement  
-├── 📁 recordings/          # 📥 VOS EXPORTS JSON ICI
-│   └── 📄 *.json                       # Enregistrements Chrome
-├── 📁 generated-scripts/   # Scripts Chrome générés
-│   ├── 📜 chrome-recorder-template.js  # Template IA
-│   └── 🎯 chrome-recorder-*.js         # Scripts personnalisés
-├── 📁 generated-prompts/   # 🤖 PROMPTS IA CURSOR
-│   └── 📝 *-cursor-prompt.md           # Prompts haute qualité
-├── 📁 features/generated/  # 📤 VOS TESTS CUCUMBER ICI
-│   ├── 📝 *.feature                    # Tests Gherkin générés
-│   └── 📁 definitions/                 # Définitions éléments/URLs
-├── 📁 tools/               # Outils conversion
+│   └── 🛠️ wedia-portal-dev.json        # Config Portal dev + debug
+├── 📁 recordings/          # 📥 VOS EXPORTS JSON CHROME ICI
+│   └── 📄 *.json                       # Enregistrements Chrome uniquement
+├── 📁 chrome-scripts/      # 🔥 SCRIPTS CHROME GÉNÉRÉS
+│   └── 🎯 chrome-recorder-*.js         # À coller dans Chrome Console
+├── 📁 cursor-prompts/      # 🤖 PROMPTS IA CURSOR
+│   └── 📝 *-cursor-prompt.md           # Prompts optimisés pour Cursor Chat
+├── 📁 cucumber-tests/      # 🥒 TESTS CUCUMBER FINAUX
+│   ├── 📝 *.feature                    # Tests Gherkin BDD
+│   ├── 🎯 *_elements.json5             # Sélecteurs optimisés
+│   ├── 🔗 *_urls.json5                 # URLs fonctionnelles
+│   └── 📁 [contexte]/                  # Organisation par domaine métier
+├── 📁 tools/               # Outils conversion + générateurs
 ├── 📁 docs/                # Documentation équipe
 └── 📋 package.json         # Scripts npm
 ```
+
+## 🎯 Architecture claire - Où va quoi ?
+
+| Dossier | Contenu | Usage |
+|---------|---------|--------|
+| 📥 `recordings/` | **JSON Chrome uniquement** | Export Chrome → Ici |
+| 🔥 `chrome-scripts/` | **Scripts JS générés** | Copier → Chrome Console |  
+| 🤖 `cursor-prompts/` | **Prompts Markdown** | Copier → Cursor Chat |
+| 🥒 `cucumber-tests/` | **Tests finaux** | Résultats conversion/IA |
 
 ## ⚔️ Pourquoi Makandal ?
 

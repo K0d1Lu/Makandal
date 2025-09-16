@@ -206,6 +206,18 @@ function generateCursorPrompt(recordingFile) {
 ## 📋 MISSION
 Génère un test Cucumber **professionnel et robuste** à partir de ce recording Chrome, en suivant les bonnes pratiques BDD et les conventions Wedia Portal.
 
+## 🗣️ CONTEXTE UTILISATEUR REQUIS
+
+**AVANT de générer les fichiers, demande-moi ces informations :**
+
+1. **Contexte métier** : À quoi sert ce test ? (ex: "Authentification admin", "Gestion portails", "Recherche produits")
+2. **Nom de feature** : Comment appeler la fonctionnalité ? (ex: "User Authentication", "Portal Management")  
+3. **Acteur principal** : Qui utilise cette fonctionnalité ? (ex: "administrator", "user", "editor")
+4. **Objectif métier** : Quel résultat attendu ? (ex: "accéder au dashboard", "créer un portail")
+5. **Organisation** : Dans quel sous-dossier organiser ? (ex: "authentication/", "portal-management/")
+
+**⚠️ Ne génère RIEN avant d'avoir ces réponses !**
+
 ## 📊 ANALYSE DU RECORDING
 - **Source**: ${recordingFile}
 - **Titre**: ${analysis.title}
@@ -225,26 +237,26 @@ ${optimizedSelectors.length > 0 ?
 }
 
 ## 📝 STRUCTURE ATTENDUE
-Génère **exactement** cette structure :
+**Après avoir reçu le contexte utilisateur, génère exactement ces 3 fichiers :**
 
-### 1️⃣ Fichier Feature: \`${recordingFile.replace('.json', '.feature')}\`
+### 1️⃣ Fichier Feature: \`[nom-contextuel].feature\`
 \`\`\`gherkin
-# Utilise EXACTEMENT ce format Gherkin
+# Utilise EXACTEMENT ce format Gherkin avec le contexte utilisateur
 
-Feature: ${featureName}
-  As a user
-  I want to ${scenarioDescription.toLowerCase()}
-  So that I can access the system functionality
+Feature: [NOM_FEATURE_UTILISATEUR]
+  As [ACTEUR_PRINCIPAL]
+  I want to [OBJECTIF_MÉTIER] 
+  So that I can [BÉNÉFICE_ATTENDU]
 
   Background:
     Given I am on the application
 
-  @browser @visual-regression
-  Scenario: ${scenarioDescription}
+  @browser @visual-regression @[TAG_CONTEXTE]
+  Scenario: [SCENARIO_DESCRIPTIF_UTILISATEUR]
     # Étapes navigation
     When I navigate to '[URL_NAME]'
     
-    # Étapes interactions (adapte selon le recording)
+    # Étapes interactions (adapte selon le recording + contexte)
     ${analysis.inputData.length > 0 ? 
       analysis.inputData.map(input => 
         `And I write '${input.text}' in '[ELEMENT_NAME]'`
@@ -252,34 +264,86 @@ Feature: ${featureName}
       'And I interact with the interface'
     }
     
-    # Assertions métier
-    Then I should see '[SUCCESS_INDICATOR]'
-    And the page should be fully loaded
+    # Assertions métier (adapte au contexte utilisateur)
+    Then I should see '[SUCCESS_INDICATOR_CONTEXTUEL]'
+    And [VALIDATION_MÉTIER_SPÉCIFIQUE]
     
     # 📸 SCREENSHOT OBLIGATOIRE - Visual Regression
-    When I take screenshot 'success-state'
-    Then visual should match baseline 'success-state'
+    When I take screenshot '[contexte]-success'
+    Then visual should match baseline '[contexte]-success'
 \`\`\`
 
-### 2️⃣ Fichier Définitions: \`${recordingFile.replace('.json', '_elements.json5')}\`
+### 2️⃣ Fichier Définitions: \`[nom-contextuel]_elements.json5\`
 \`\`\`json5
 {
-  // 🎯 Éléments optimisés Portal (priorité data-testid, portal-action)
+  // 🎯 Éléments optimisés Portal - [CONTEXTE_UTILISATEUR]
+  // Priorité: portal-action, data-portal, data-testid
+  
   ${optimizedSelectors.map(sel => 
     `"${sel.name}": "${sel.optimized}"`
   ).join(',\n  ')}
 }
 \`\`\`
 
-### 3️⃣ Fichier URLs: \`${recordingFile.replace('.json', '_urls.json5')}\`
+### 3️⃣ Fichier URLs: \`[nom-contextuel]_urls.json5\`
 \`\`\`json5
 {
+  // 🎯 URLs fonctionnelles - [CONTEXTE_UTILISATEUR]
   "${analysis.url ? 
     `"target page": "${analysis.url}"` :
     '"target page": "/"'
   }
 }
 \`\`\`
+
+## 📂 OÙ SAUVEGARDER LES FICHIERS GÉNÉRÉS
+
+**⚠️ INSTRUCTIONS CRUCIALES - AGENT AI INTÉGRATION AUTOMATIQUE :**
+
+### 🤖 Agent AI va intégrer automatiquement dans wedia_demo !
+
+Une fois que tu as généré les 3 fichiers ci-dessus, **NE PAS** les sauvegarder dans Makandal.
+L'**Agent AI** va les intégrer directement dans le projet **wedia_demo** !
+
+### 🎯 Étape 1 : Générer les fichiers Cursor
+Génère les 3 fichiers avec le contexte utilisateur dans Cursor Chat :
+- \`[nom-contextuel].feature\`
+- \`[nom-contextuel]_elements.json5\`  
+- \`[nom-contextuel]_urls.json5\`
+
+### 🎯 Étape 2 : Copier dans un dossier temporaire
+Crée un dossier temporaire et colle les 3 fichiers :
+\`\`\`bash
+mkdir -p /tmp/makandal-generated/
+# Coller les 3 fichiers ici
+\`\`\`
+
+### 🎯 Étape 3 : Lancer Agent AI
+Retourner dans Makandal et lancer l'Agent AI :
+\`\`\`bash
+cd chrome-recorder-workflow/
+npm run agent-integrate /tmp/makandal-generated/
+\`\`\`
+
+### 🤖 Agent AI fera automatiquement :
+✅ Vérifier/configurer .env avec path wedia_demo  
+✅ Créer backups si fichiers existent  
+✅ Intégrer .feature dans \`wedia_demo/features/[DOSSIER_ORGANISATION]/\`  
+✅ Intégrer éléments dans \`wedia_demo/definitions/_[nom]_elements.json5\`  
+✅ Intégrer URLs dans \`wedia_demo/definitions/_[nom]_urls.json5\`  
+✅ Créer structure dossiers si nécessaire  
+
+### 🎯 Structure finale dans wedia_demo :
+\`\`\`
+wedia_demo/Test/e2e-tests/cucumber-app/project/
+├── features/[DOSSIER_ORGANISATION]/
+│   └── [nom-contextuel].feature
+└── definitions/
+    ├── _[nom-contextuel]_elements.json5
+    └── _[nom-contextuel]_urls.json5
+\`\`\`
+
+**🚀 RÉVOLUTION AGENT AI : Plus de copie manuelle, intégration automatique !**
 
 ## ⚡ OPTIMISATIONS REQUISES
 
@@ -331,7 +395,7 @@ Feature: ${featureName}
 
 // 💾 Sauvegarder le prompt généré
 function savePromptToFile(prompt, recordingFile) {
-  const promptsDir = 'generated-prompts';
+  const promptsDir = 'cursor-prompts';
   
   // Créer le dossier s'il n'existe pas
   if (!fs.existsSync(promptsDir)) {

@@ -108,8 +108,8 @@ const menuOptions = [
   },
   {
     id: '3',
-    title: '🎯 Convertir un recording',
-    description: 'Chrome JSON → Test Cucumber', 
+    title: '🎯 Convertir un recording (Agent AI)',
+    description: 'Chrome JSON → wedia_demo automatique', 
     action: 'convert-recording'
   },
   {
@@ -120,9 +120,15 @@ const menuOptions = [
   },
   {
     id: '5',
-    title: '⚙️ Voir configurations',
-    description: 'Lister les configs disponibles',
-    action: 'list-configs'
+    title: '🏛️ Agent - Intégrer fichiers générés',
+    description: 'Intégrer tests Cursor → wedia_demo automatique',
+    action: 'agent-integrate'
+  },
+  {
+    id: '6',
+    title: '⚙️ Configuration environnement',
+    description: 'Configurer .env et path wedia_demo',
+    action: 'setup-environment'
   },
   {
     id: '0',
@@ -166,6 +172,14 @@ async function executeAction(action) {
       
     case 'generate-cursor-prompt':
       await generateCursorPrompt();
+      break;
+      
+    case 'agent-integrate':
+      await agentIntegrateFiles();
+      break;
+      
+    case 'setup-environment':
+      await setupEnvironment();
       break;
       
     case 'list-configs':
@@ -344,10 +358,11 @@ async function generateCursorPrompt() {
         console.log(style('green', '✅ Prompt Cursor généré !', true));
         console.log('');
         console.log(style('yellow', '📋 Prochaines étapes:'));
-        console.log('1. Ouvre Cursor Chat');
-        console.log(`2. Copie le contenu du fichier: ${promptGenerated}`);
-        console.log('3. Colle dans Cursor et lance la génération');
-        console.log('4. L\'IA créera ton test Cucumber optimisé !');
+        console.log('1. Ouvre Cursor Chat (Cmd+L)');
+        console.log(`2. Copie le contenu du fichier: cursor-prompts/${promptGenerated}`);
+        console.log('3. Colle dans Cursor et réponds aux questions contextuelles');
+        console.log('4. L\'IA créera 3 fichiers à sauvegarder dans cucumber-tests/');
+        console.log('5. Organise par contexte métier (auth/, portal/, etc.)');
       }
     } else {
       console.log(style('red', '❌ Choix invalide'));
@@ -374,6 +389,52 @@ async function generateCursorPromptFromFile(selectedFile) {
   } catch (error) {
     console.log(style('red', `❌ Erreur: ${error.message}`));
     return null;
+  }
+}
+
+// 🏛️ Agent - Intégrer fichiers générés
+async function agentIntegrateFiles() {
+  console.log(style('cyan', '🏛️ Agent AI - Intégration automatique', true));
+  console.log('');
+  
+  // Demander dossier source
+  console.log(style('yellow', '📁 Dossiers suggérés:'));
+  console.log('  /tmp/makandal-generated/');
+  console.log('  ./temp-cucumber-files/');
+  console.log('  ~/Downloads/cursor-tests/');
+  console.log('');
+  
+  const sourceDir = await askQuestion(style('cyan', '🎯 Dossier contenant les fichiers générés: '));
+  
+  if (!sourceDir.trim()) {
+    console.log(style('red', '❌ Dossier requis'));
+    return;
+  }
+  
+  console.log('');
+  console.log(style('magenta', '🚀 Agent AI - Lancement intégration automatique...'));
+  
+  try {
+    await runCommand('node', ['bin/agent-integrate.js', sourceDir.trim()]);
+  } catch (error) {
+    console.log(style('red', '❌ Erreur intégration Agent AI:'));
+    console.log(style('red', error.message));
+  }
+}
+
+// ⚙️ Configuration environnement 
+async function setupEnvironment() {
+  console.log(style('cyan', '⚙️ Configuration environnement Makandal', true));
+  console.log('');
+  
+  try {
+    await runCommand('node', ['tools/env-manager.js']);
+    console.log('');
+    console.log(style('green', '✅ Configuration environnement terminée !'));
+    console.log(style('yellow', '💡 L\'Agent AI est maintenant prêt pour l\'intégration automatique'));
+  } catch (error) {
+    console.log(style('red', '❌ Erreur configuration:'));
+    console.log(style('red', error.message));
   }
 }
 

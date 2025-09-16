@@ -210,7 +210,7 @@ function hydrateTemplate(template, config) {
 
 // 💾 Sauvegarder le script généré
 function saveGeneratedScript(content, configName) {
-  const outputDir = path.join(__dirname, '..', 'generated-scripts');
+  const outputDir = path.join(__dirname, '..', 'chrome-scripts');
   const fileName = `chrome-recorder-${configName}-${Date.now()}.js`;
   const outputPath = path.join(outputDir, fileName);
   
@@ -222,7 +222,7 @@ function saveGeneratedScript(content, configName) {
   try {
     fs.writeFileSync(outputPath, content, 'utf8');
     log('green', '💾', `Script généré: ${fileName}`);
-    log('cyan', '📂', `Chemin complet: ${outputPath}`);
+    log('cyan', '📂', `Chemin: chrome-scripts/${fileName}`);
     return { path: outputPath, fileName };
   } catch (error) {
     log('red', '❌', `Erreur sauvegarde: ${error.message}`);
@@ -240,13 +240,16 @@ function showUsageInstructions(savedFile, configName) {
   console.log('1️⃣ Ouvrez Chrome DevTools (F12)');
   console.log('2️⃣ Allez dans l\'onglet "Console"');
   console.log('3️⃣ Copiez le contenu du fichier généré:');
-  log('cyan', '📁', savedFile.fileName);
+  log('cyan', '📁', `chrome-scripts/${savedFile.fileName}`);
   console.log('4️⃣ Collez dans la console et appuyez sur Entrée');
   console.log('5️⃣ Allez dans l\'onglet "Recorder"');
   console.log('6️⃣ Créez un nouvel enregistrement');
+  console.log('7️⃣ Exportez en JSON → Sauvegardez dans recordings/');
   console.log('');
   log('yellow', '🧪', 'Test: Tapez "MakandalRecorder.test()" dans la console');
   log('blue', '🔧', `Configuration: ${configName}`);
+  console.log('');
+  log('white', '🎯', 'Prochaine étape: npm run hi-makandal → Option 4 (Prompts IA)');
   console.log('');
   log('magenta', '⚔️', '"François Makandal guide vos sélecteurs !" ⚔️');
 }

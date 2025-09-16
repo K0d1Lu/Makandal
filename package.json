@@ -38,7 +38,9 @@
     "test": "npm run example",
     "validate": "node -c tools/chrome-to-cucumber-converter.js && node -c bin/makandal-cli.js",
     "docs": "echo 'Documentation disponible dans docs/CLI_USAGE.md'",
-    "generate-prompt": "node tools/cursor-prompt-generator.js"
+    "generate-prompt": "node tools/cursor-prompt-generator.js",
+    "agent-integrate": "node bin/agent-integrate.js",
+    "env-setup": "node tools/env-manager.js"
   },
   "files": [
     "bin/",

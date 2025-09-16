@@ -9,6 +9,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { MakandalEnvironmentManager } = require('./env-manager');
 
 // 🔥 Makandal - Agent IA pour la découverte automatique des définitions
 class MakandalAgent {
@@ -436,6 +437,12 @@ async function main() {
   }
 
   try {
+    // 🤖 Agent AI - Configuration environnement
+    console.log('🤖 Makandal Agent - Initialisation...');
+    const envManager = new MakandalEnvironmentManager();
+    await envManager.ensureEnvironmentReady();
+    const wediaPaths = envManager.getWediaPaths();
+
     // Lecture du fichier Chrome
     const chromeData = JSON.parse(fs.readFileSync(inputFile, 'utf8'));
     
@@ -443,28 +450,70 @@ async function main() {
     const converter = new ChromeToCucumberConverter();
     const result = await converter.convert(chromeData);
     
-    // Génération des fichiers de sortie
     const baseName = path.basename(inputFile, '.json');
-    const outputDir = path.dirname(inputFile);
-    
-    // Fichier .feature
-    const featureFile = path.join(outputDir, `${baseName}.feature`);
-    fs.writeFileSync(featureFile, result.feature);
-    
-    // Fichier _elements.json5
-    const elementsFile = path.join(outputDir, `${baseName}_elements.json5`);
-    fs.writeFileSync(elementsFile, result.elements);
-    
-    // Fichier _urls.json5  
-    const urlsFile = path.join(outputDir, `${baseName}_urls.json5`);
-    fs.writeFileSync(urlsFile, result.urls);
-    
-    // Rapport
-    console.log('✅ Conversion terminée !');
-    console.log(`📁 Fichiers générés:`);
-    console.log(`   📄 ${featureFile}`);
-    console.log(`   🎯 ${elementsFile}`);
-    console.log(`   🔗 ${urlsFile}`);
+
+    // 🎯 Agent AI - Intégration automatique dans wedia_demo
+    if (wediaPaths.autoIntegration) {
+      console.log('🚀 Agent AI - Intégration automatique dans wedia_demo...');
+      
+      // Créer dossier d'organisation dans features/
+      const featureOrgPath = path.join(wediaPaths.featuresPath, wediaPaths.defaultOrganization);
+      if (!fs.existsSync(featureOrgPath)) {
+        fs.mkdirSync(featureOrgPath, { recursive: true });
+        console.log(`📁 Dossier créé: features/${wediaPaths.defaultOrganization}/`);
+      }
+
+      // Fichier .feature dans wedia_demo
+      const wediaFeatureFile = path.join(featureOrgPath, `${baseName}.feature`);
+      if (wediaPaths.createBackups && fs.existsSync(wediaFeatureFile)) {
+        await envManager.createBackup(wediaFeatureFile);
+      }
+      fs.writeFileSync(wediaFeatureFile, result.feature);
+      console.log(`✅ Feature intégrée: features/${wediaPaths.defaultOrganization}/${baseName}.feature`);
+      
+      // Fichier _elements.json5 dans wedia_demo/definitions
+      const wediaElementsFile = path.join(wediaPaths.definitionsPath, `_${baseName}_elements.json5`);
+      if (wediaPaths.createBackups && fs.existsSync(wediaElementsFile)) {
+        await envManager.createBackup(wediaElementsFile);
+      }
+      fs.writeFileSync(wediaElementsFile, result.elements);
+      console.log(`✅ Éléments intégrés: definitions/_${baseName}_elements.json5`);
+      
+      // Fichier _urls.json5 dans wedia_demo/definitions
+      const wediaUrlsFile = path.join(wediaPaths.definitionsPath, `_${baseName}_urls.json5`);
+      if (wediaPaths.createBackups && fs.existsSync(wediaUrlsFile)) {
+        await envManager.createBackup(wediaUrlsFile);
+      }
+      fs.writeFileSync(wediaUrlsFile, result.urls);
+      console.log(`✅ URLs intégrées: definitions/_${baseName}_urls.json5`);
+
+      // Rapport Agent AI
+      console.log('');
+      console.log('🤖 Agent AI - Intégration terminée !');
+      console.log(`📁 Projet: ${path.basename(wediaPaths.demoPath)}`);
+      console.log(`🎯 Organisation: ${wediaPaths.defaultOrganization}`);
+      
+    } else {
+      // Fallback : génération locale (mode ancien)
+      console.log('📋 Mode local - Génération dans cucumber-tests/...');
+      const projectRoot = path.resolve(__dirname, '..');
+      const outputDir = path.join(projectRoot, 'cucumber-tests');
+      
+      if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, { recursive: true });
+      }
+      
+      const featureFile = path.join(outputDir, `${baseName}.feature`);
+      const elementsFile = path.join(outputDir, `${baseName}_elements.json5`);
+      const urlsFile = path.join(outputDir, `${baseName}_urls.json5`);
+      
+      fs.writeFileSync(featureFile, result.feature);
+      fs.writeFileSync(elementsFile, result.elements);
+      fs.writeFileSync(urlsFile, result.urls);
+      
+      console.log('📁 Fichiers générés dans cucumber-tests/');
+    }
+
     console.log('');
     console.log('📊 Statistiques:');
     console.log(`   📝 ${result.stats.totalSteps} étapes converties`);

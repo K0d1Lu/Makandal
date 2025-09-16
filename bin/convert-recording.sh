@@ -73,8 +73,12 @@ if [ $? -eq 0 ]; then
   log $GREEN "✅" "Conversion terminée avec succès !"
   echo ""
   log $CYAN "📂" "Fichiers générés dans:"
-  echo "  features/generated/"
-  echo "  features/generated/definitions/"
+  echo "  cucumber-tests/"
+  echo ""
+  log $YELLOW "📋" "Prochaines étapes:"
+  echo "  1. Organiser par contexte (mkdir cucumber-tests/[contexte]/)"
+  echo "  2. Déplacer fichiers dans le bon sous-dossier"
+  echo "  3. Ou utiliser npm run hi-makandal → Option 4 pour prompts IA"
 else
   log $RED "❌" "Erreur pendant la conversion"
   exit 1
