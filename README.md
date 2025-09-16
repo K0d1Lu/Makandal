@@ -74,16 +74,15 @@ npm run makandal:portal
 # CLI interactif Agent AI
 npm run hi-makandal
 
-# Option 4: 🤖 Générer prompt Cursor IA
-# Option 5: 🏛️ Agent - Intégrer fichiers générés
+# Option 4: 🏆 Test premium complet (IA + intégration)
 ```
 
 **🎯 Workflow Cursor + Agent AI :**
-1. **Option 4** → Génère prompt contextualisé
+1. **Option 4** → Workflow complet : génère prompt + guide intégration
 2. **Cursor Chat** (`Cmd+L`) → Colle prompt → Réponds questions contexte
 3. **Cursor génère** 3 fichiers premium avec Visual Regression
 4. **Sauve** fichiers dans dossier temporaire
-5. **Option 5** → Agent AI intègre automatiquement dans wedia_demo
+5. **Agent AI intègre automatiquement** dans wedia_demo (dans le même workflow)
 
 **🔥 Révolution :** Agent AI + IA Premium + Visual Regression ! 📸
 
@@ -108,7 +107,7 @@ npm run hi-makandal
 ### 🤖 Scripts Agent AI révolutionnaires (Étape 2)
 | Script | Usage | Description |
 |--------|--------|-------------|
-| `npm run hi-makandal` | **Agent Interface** | CLI Agent AI avec 6 options révolutionnaires |
+| `npm run hi-makandal` | **Agent Interface** | CLI Agent AI avec 5 options intuitives |
 | `./bin/convert-recording.sh <nom>.json` | **Agent Auto** | Conversion + intégration wedia_demo automatique |
 | `npm run agent-integrate <dossier>` | **Agent Import** | Intégrer fichiers Cursor → wedia_demo |
 | `npm run env-setup` | **Agent Config** | Configuration environnement Agent AI |
@@ -118,10 +117,9 @@ npm run hi-makandal
 |--------|-------|--------|
 | **1** | 🔥 Générer script Chrome | Scripts Chrome optimisés |
 | **2** | 📁 Voir recordings | Lister exports JSON |
-| **3** | 🎯 Convertir recording (Agent AI) | JSON → wedia_demo direct |
-| **4** | 🤖 Générer prompt Cursor IA | Recording → Prompt premium |
-| **5** | 🏛️ Agent - Intégrer fichiers | Cursor → wedia_demo auto |
-| **6** | ⚙️ Configuration environnement | Setup .env Agent AI |
+| **3** | ⚡ Test simple (conversion rapide) | JSON → Test basique → wedia_demo |
+| **4** | 🏆 Test premium complet (IA + intégration) | JSON → Cursor IA → wedia_demo |
+| **5** | ⚙️ Configuration environnement | Setup .env Agent AI |
 
 ### 🛠️ Scripts Utilitaires
 | Script | Usage | Description |

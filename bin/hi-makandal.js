@@ -108,24 +108,18 @@ const menuOptions = [
   },
   {
     id: '3',
-    title: '🎯 Convertir un recording (Agent AI)',
-    description: 'Chrome JSON → wedia_demo automatique', 
+    title: '⚡ Test simple (conversion rapide)',
+    description: 'Chrome JSON → Test Cucumber basique → wedia_demo direct', 
     action: 'convert-recording'
   },
   {
     id: '4',
-    title: '🤖 Générer prompt Cursor IA',
-    description: 'Recording → Prompt IA pour Cucumber haute qualité',
-    action: 'generate-cursor-prompt'
+    title: '🏆 Test premium complet (IA + intégration)',
+    description: 'Chrome JSON → Cursor IA → wedia_demo automatique',
+    action: 'premium-workflow'
   },
   {
     id: '5',
-    title: '🏛️ Agent - Intégrer fichiers générés',
-    description: 'Intégrer tests Cursor → wedia_demo automatique',
-    action: 'agent-integrate'
-  },
-  {
-    id: '6',
     title: '⚙️ Configuration environnement',
     description: 'Configurer .env et path wedia_demo',
     action: 'setup-environment'
@@ -170,12 +164,8 @@ async function executeAction(action) {
       await convertRecording();
       break;
       
-    case 'generate-cursor-prompt':
-      await generateCursorPrompt();
-      break;
-      
-    case 'agent-integrate':
-      await agentIntegrateFiles();
+    case 'premium-workflow':
+      await premiumWorkflow();
       break;
       
     case 'setup-environment':
@@ -275,9 +265,10 @@ async function listRecordings() {
   }
 }
 
-// 🎯 Convertir un recording
+// ⚡ Test simple (conversion rapide)
 async function convertRecording() {
-  console.log(style('cyan', '🎯 Conversion Recording → Cucumber', true));
+  console.log(style('cyan', '⚡ Test Simple - Conversion Rapide', true));
+  console.log(style('yellow', '🎯 Chrome JSON → Test Cucumber basique → wedia_demo (15 sec)'));
   console.log('');
   
   // Lister les fichiers disponibles
@@ -304,11 +295,13 @@ async function convertRecording() {
     if (fileIndex >= 0 && fileIndex < files.length) {
       const selectedFile = files[fileIndex];
       console.log('');
-      console.log(style('magenta', `⚡ Makandal convertit ${selectedFile}...`));
+      console.log(style('magenta', `⚡ Agent AI convertit ${selectedFile}...`));
+      console.log(style('gray', '🤖 Génération automatique + intégration wedia_demo'));
       
       await runCommand('./bin/convert-recording.sh', [selectedFile]);
       console.log('');
-      console.log(style('green', '✅ Conversion terminée !', true));
+      console.log(style('green', '✅ Test simple généré et intégré dans wedia_demo !', true));
+      console.log(style('yellow', '💡 Pour des tests plus contextualisés, utilise Option 4 → Option 5'));
     } else {
       console.log(style('red', '❌ Choix invalide'));
     }
@@ -318,9 +311,14 @@ async function convertRecording() {
   }
 }
 
-// 🤖 Générer prompt Cursor IA 
-async function generateCursorPrompt() {
-  console.log(style('cyan', '🤖 Génération Prompt Cursor IA', true));
+// 🏆 Test premium complet (IA + intégration)
+async function premiumWorkflow() {
+  console.log(style('cyan', '🏆 Test Premium Complet - Workflow IA', true));
+  console.log(style('yellow', '🎯 Chrome JSON → Cursor IA → wedia_demo (2 min)'));
+  console.log('');
+  
+  // ÉTAPE 1: Générer prompt Cursor
+  console.log(style('magenta', '🚀 ÉTAPE 1/3 - Génération prompt Cursor IA'));
   console.log('');
   
   // Lister les fichiers disponibles
@@ -345,38 +343,73 @@ async function generateCursorPrompt() {
     const choice = await askQuestion(style('cyan', `🎯 Choisis un fichier (1-${files.length}): `));
     const fileIndex = parseInt(choice.trim()) - 1;
     
-    if (fileIndex >= 0 && fileIndex < files.length) {
-      const selectedFile = files[fileIndex];
-      console.log('');
-      console.log(style('magenta', `⚡ Makandal analyse ${selectedFile}...`));
-      
-      // Générer le prompt IA
-      const promptGenerated = await generateCursorPromptFromFile(selectedFile);
-      
-      if (promptGenerated) {
-        console.log('');
-        console.log(style('green', '✅ Prompt Cursor généré !', true));
-        console.log('');
-        console.log(style('yellow', '📋 Prochaines étapes:'));
-        console.log('1. Ouvre Cursor Chat (Cmd+L)');
-        console.log(`2. Copie le contenu du fichier: cursor-prompts/${promptGenerated}`);
-        console.log('3. Colle dans Cursor et réponds aux questions contextuelles');
-        console.log('4. L\'IA créera 3 fichiers à sauvegarder dans cucumber-tests/');
-        console.log('5. Organise par contexte métier (auth/, portal/, etc.)');
-      }
-    } else {
+    if (fileIndex < 0 || fileIndex >= files.length) {
       console.log(style('red', '❌ Choix invalide'));
+      return;
     }
+    
+    const selectedFile = files[fileIndex];
+    console.log('');
+    console.log(style('magenta', `⚡ Makandal analyse ${selectedFile}...`));
+    
+    // Générer le prompt IA
+    const promptGenerated = await generateCursorPromptFromFile(selectedFile);
+    
+    if (!promptGenerated) {
+      console.log(style('red', '❌ Erreur génération prompt'));
+      return;
+    }
+    
+    // ÉTAPE 2: Instructions Cursor
+    console.log('');
+    console.log(style('green', '✅ Prompt premium généré !', true));
+    console.log('');
+    console.log(style('magenta', '🚀 ÉTAPE 2/3 - Traitement Cursor Chat'));
+    console.log('');
+    console.log(style('yellow', '📋 Instructions:'));
+    console.log('1. Ouvre Cursor Chat (Cmd+L)');
+    console.log(`2. Copie le contenu: cursor-prompts/${promptGenerated}`);
+    console.log('3. Colle dans Cursor et réponds aux questions contextuelles');
+    console.log('4. Cursor génère 3 fichiers premium (.feature + .json5)');
+    console.log('5. Sauve les fichiers dans un dossier temporaire');
+    console.log('');
+    console.log(style('cyan', '💡 Exemple: mkdir /tmp/makandal-premium/ && sauvegarder les 3 fichiers'));
+    console.log('');
+    
+    // Attendre que l'utilisateur termine avec Cursor
+    await askQuestion(style('yellow', '📋 Appuie sur Entrée quand les fichiers Cursor sont prêts...'));
+    
+    // ÉTAPE 3: Instructions finales automatiques
+    console.log('');
+    console.log(style('magenta', '🚀 ÉTAPE 3/3 - Finalisation automatique'));
+    console.log('');
+    
+    console.log(style('green', '✅ Cursor sauvegarde maintenant directement dans wedia_demo !'));
+    console.log('');
+    console.log(style('yellow', '📋 Le prompt inclut maintenant:'));
+    console.log('• 🧠 Analyse de la structure wedia_demo');
+    console.log('• 🎯 Choix intelligent du dossier features approprié');
+    console.log('• 📁 Instructions de sauvegarde directe aux bons endroits');
+    console.log('• 🔄 Plus besoin d\'intégration manuelle !');
+    console.log('');
+    
+    console.log(style('green', '🎉 Workflow premium révolutionnaire !', true));
+    console.log(style('magenta', '🏆 Cursor + Intelligence + Intégration automatique !'));
+    console.log('');
+    console.log(style('cyan', '💡 Les fichiers seront directement dans wedia_demo après génération Cursor'));
+    
+    // Attente finale optionnelle pour validation
+    await askQuestion(style('green', '📋 Appuie sur Entrée pour revenir au menu...'));
+    
   } catch (error) {
-    console.log(style('red', '❌ Erreur génération prompt:'));
-    console.log(style('red', error.message));
+    console.log(style('red', `❌ Erreur workflow premium: ${error.message}`));
   }
 }
 
 // 📝 Générer prompt depuis fichier
 async function generateCursorPromptFromFile(selectedFile) {
   try {
-    const result = generateCursorPromptFromRecording(selectedFile);
+    const result = await generateCursorPromptFromRecording(selectedFile);
     
     if (result.success) {
       console.log(style('green', `📝 Prompt généré: ${result.promptFile}`));
@@ -392,35 +425,6 @@ async function generateCursorPromptFromFile(selectedFile) {
   }
 }
 
-// 🏛️ Agent - Intégrer fichiers générés
-async function agentIntegrateFiles() {
-  console.log(style('cyan', '🏛️ Agent AI - Intégration automatique', true));
-  console.log('');
-  
-  // Demander dossier source
-  console.log(style('yellow', '📁 Dossiers suggérés:'));
-  console.log('  /tmp/makandal-generated/');
-  console.log('  ./temp-cucumber-files/');
-  console.log('  ~/Downloads/cursor-tests/');
-  console.log('');
-  
-  const sourceDir = await askQuestion(style('cyan', '🎯 Dossier contenant les fichiers générés: '));
-  
-  if (!sourceDir.trim()) {
-    console.log(style('red', '❌ Dossier requis'));
-    return;
-  }
-  
-  console.log('');
-  console.log(style('magenta', '🚀 Agent AI - Lancement intégration automatique...'));
-  
-  try {
-    await runCommand('node', ['bin/agent-integrate.js', sourceDir.trim()]);
-  } catch (error) {
-    console.log(style('red', '❌ Erreur intégration Agent AI:'));
-    console.log(style('red', error.message));
-  }
-}
 
 // ⚙️ Configuration environnement 
 async function setupEnvironment() {

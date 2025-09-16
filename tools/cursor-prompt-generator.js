@@ -8,6 +8,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { MakandalEnvironmentManager } = require('./env-manager');
 
 // 📊 Analyser un recording Chrome
 function analyzeRecording(recordingData) {
@@ -186,9 +187,80 @@ function generateOptimizedSelectors(analysis) {
   return selectors;
 }
 
-// 🚀 Générer le prompt principal
-function generateCursorPrompt(recordingFile) {
+// 🔍 Analyser la structure du projet wedia_demo
+async function analyzeWediaProjectStructure(wediaPaths) {
+  if (!wediaPaths || !wediaPaths.demoPath) {
+    return 'Structure wedia_demo non disponible';
+  }
+
   try {
+    const structure = {
+      demoPath: wediaPaths.demoPath,
+      featuresPath: wediaPaths.featuresPath,
+      definitionsPath: wediaPaths.definitionsPath
+    };
+
+    // Analyser les dossiers features existants
+    const featuresDir = wediaPaths.featuresPath;
+    const existingFeatureDirs = [];
+    
+    if (fs.existsSync(featuresDir)) {
+      const items = fs.readdirSync(featuresDir);
+      for (const item of items) {
+        const itemPath = path.join(featuresDir, item);
+        if (fs.statSync(itemPath).isDirectory() && !item.startsWith('.')) {
+          existingFeatureDirs.push(item);
+        }
+      }
+    }
+
+    // Analyser les fichiers de définitions existants
+    const definitionsDir = wediaPaths.definitionsPath;
+    const existingDefinitions = [];
+    
+    if (fs.existsSync(definitionsDir)) {
+      const files = fs.readdirSync(definitionsDir);
+      existingDefinitions.push(...files.filter(f => f.endsWith('.json5')));
+    }
+
+    return `
+📁 Structure wedia_demo détectée:
+• Projet: ${path.basename(structure.demoPath)}
+• Features: ${structure.featuresPath}
+• Definitions: ${structure.definitionsPath}
+
+📂 Dossiers features existants: ${existingFeatureDirs.length > 0 ? existingFeatureDirs.join(', ') : 'aucun'}
+📝 Fichiers definitions existants: ${existingDefinitions.length} fichiers
+
+🎯 Choix intelligent recommandé:
+• Si authentification → features/authentication/
+• Si gestion portails → features/portal-management/  
+• Si recherche → features/search/
+• Autres → features/generated/ (par défaut)
+`;
+
+  } catch (error) {
+    return `Structure wedia_demo partiellement analysée - erreur: ${error.message}`;
+  }
+}
+
+// 🚀 Générer le prompt principal avec analyse wedia_demo
+async function generateCursorPrompt(recordingFile) {
+  try {
+    // 🤖 Agent AI - Chargement environnement wedia_demo
+    const envManager = new MakandalEnvironmentManager();
+    let wediaPaths = null;
+    let projectStructure = '';
+    
+    try {
+      await envManager.ensureEnvironmentReady();
+      wediaPaths = envManager.getWediaPaths();
+      projectStructure = await analyzeWediaProjectStructure(wediaPaths);
+    } catch (error) {
+      console.log('⚠️  Environnement wedia_demo non configuré - prompt générique généré');
+      projectStructure = 'Structure wedia_demo non disponible - utiliser paths par défaut';
+    }
+
     // Charger et parser le JSON
     const recordingPath = path.join('recordings', recordingFile);
     const recordingData = JSON.parse(fs.readFileSync(recordingPath, 'utf8'));
@@ -200,23 +272,32 @@ function generateCursorPrompt(recordingFile) {
     const scenarioDescription = generateScenarioDescription(analysis, context);
     const optimizedSelectors = generateOptimizedSelectors(analysis);
     
-    // Générer le prompt optimisé
+    // Générer le prompt optimisé avec analyse wedia_demo
     const prompt = `# 🎯 Génération Test Cucumber Haute Qualité - Makandal IA
 
 ## 📋 MISSION
-Génère un test Cucumber **professionnel et robuste** à partir de ce recording Chrome, en suivant les bonnes pratiques BDD et les conventions Wedia Portal.
+Génère un test Cucumber **professionnel et robuste** à partir de ce recording Chrome, en suivant les bonnes pratiques BDD et les conventions Wedia Portal. **Tu auras accès à la structure du projet wedia_demo pour choisir intelligemment l'emplacement des fichiers.**
+
+## 🏗️ ANALYSE PROJET WEDIA_DEMO
+${projectStructure}
 
 ## 🗣️ CONTEXTE UTILISATEUR REQUIS
 
 **AVANT de générer les fichiers, demande-moi ces informations :**
 
 1. **Contexte métier** : À quoi sert ce test ? (ex: "Authentification admin", "Gestion portails", "Recherche produits")
-2. **Nom de feature** : Comment appeler la fonctionnalité ? (ex: "User Authentication", "Portal Management")  
+2. **Nom de feature** : Comment appeler la fonctionnalité ? (ex: "User Authentication", "Portal Management")
 3. **Acteur principal** : Qui utilise cette fonctionnalité ? (ex: "administrator", "user", "editor")
 4. **Objectif métier** : Quel résultat attendu ? (ex: "accéder au dashboard", "créer un portail")
-5. **Organisation** : Dans quel sous-dossier organiser ? (ex: "authentication/", "portal-management/")
 
 **⚠️ Ne génère RIEN avant d'avoir ces réponses !**
+
+## 🧠 INTELLIGENCE ORGANISATIONNELLE
+
+**Après avoir reçu le contexte utilisateur, choisis intelligemment :**
+- **Dossier features** : Analyse les dossiers existants et choisis le plus approprié
+- **Nommage** : Utilise des noms cohérents avec l'existant
+- **Structure** : Respecte les conventions wedia_demo détectées
 
 ## 📊 ANALYSE DU RECORDING
 - **Source**: ${recordingFile}
@@ -296,54 +377,41 @@ Feature: [NOM_FEATURE_UTILISATEUR]
 }
 \`\`\`
 
-## 📂 OÙ SAUVEGARDER LES FICHIERS GÉNÉRÉS
+## 📂 SAUVEGARDE INTELLIGENTE DANS WEDIA_DEMO
 
-**⚠️ INSTRUCTIONS CRUCIALES - AGENT AI INTÉGRATION AUTOMATIQUE :**
+**🤖 INTELLIGENCE AGENT AI : Sauvegarde directe dans wedia_demo !**
 
-### 🤖 Agent AI va intégrer automatiquement dans wedia_demo !
+### 🧠 Après génération des 3 fichiers, sauvegarde-les directement :
 
-Une fois que tu as généré les 3 fichiers ci-dessus, **NE PAS** les sauvegarder dans Makandal.
-L'**Agent AI** va les intégrer directement dans le projet **wedia_demo** !
+**🎯 Fichier .feature :**
+- **Chemin**: \`${wediaPaths ? wediaPaths.featuresPath : 'wedia_demo/features'}/[DOSSIER_INTELLIGENT]/[nom-contextuel].feature\`
+- **Dossier intelligent** : Choisi selon le contexte métier (authentication, portal-management, search, ou generated)
 
-### 🎯 Étape 1 : Générer les fichiers Cursor
-Génère les 3 fichiers avec le contexte utilisateur dans Cursor Chat :
-- \`[nom-contextuel].feature\`
-- \`[nom-contextuel]_elements.json5\`  
-- \`[nom-contextuel]_urls.json5\`
+**🎯 Fichier _elements.json5 :**
+- **Chemin**: \`${wediaPaths ? wediaPaths.definitionsPath : 'wedia_demo/definitions'}/_[nom-contextuel]_elements.json5\`
 
-### 🎯 Étape 2 : Copier dans un dossier temporaire
-Crée un dossier temporaire et colle les 3 fichiers :
-\`\`\`bash
-mkdir -p /tmp/makandal-generated/
-# Coller les 3 fichiers ici
+**🎯 Fichier _urls.json5 :**
+- **Chemin**: \`${wediaPaths ? wediaPaths.definitionsPath : 'wedia_demo/definitions'}/_[nom-contextuel]_urls.json5\`
+
+### 🎯 Exemple concret :
+Si contexte = "Authentification admin" et nom = "admin-signin":
+\`\`\`
+${wediaPaths ? wediaPaths.featuresPath : 'wedia_demo/features'}/authentication/
+├── admin-signin.feature
+
+${wediaPaths ? wediaPaths.definitionsPath : 'wedia_demo/definitions'}/
+├── _admin-signin_elements.json5
+└── _admin-signin_urls.json5
 \`\`\`
 
-### 🎯 Étape 3 : Lancer Agent AI
-Retourner dans Makandal et lancer l'Agent AI :
-\`\`\`bash
-cd chrome-recorder-workflow/
-npm run agent-integrate /tmp/makandal-generated/
-\`\`\`
+### 🤖 Instructions précises :
+1. **Analyse** la structure wedia_demo ci-dessus
+2. **Choisis intelligemment** le dossier features approprié
+3. **Sauvegarde directement** aux chemins indiqués
+4. **Respecte** les conventions de nommage détectées
+5. **Informe** l'utilisateur des chemins exacts utilisés
 
-### 🤖 Agent AI fera automatiquement :
-✅ Vérifier/configurer .env avec path wedia_demo  
-✅ Créer backups si fichiers existent  
-✅ Intégrer .feature dans \`wedia_demo/features/[DOSSIER_ORGANISATION]/\`  
-✅ Intégrer éléments dans \`wedia_demo/definitions/_[nom]_elements.json5\`  
-✅ Intégrer URLs dans \`wedia_demo/definitions/_[nom]_urls.json5\`  
-✅ Créer structure dossiers si nécessaire  
-
-### 🎯 Structure finale dans wedia_demo :
-\`\`\`
-wedia_demo/Test/e2e-tests/cucumber-app/project/
-├── features/[DOSSIER_ORGANISATION]/
-│   └── [nom-contextuel].feature
-└── definitions/
-    ├── _[nom-contextuel]_elements.json5
-    └── _[nom-contextuel]_urls.json5
-\`\`\`
-
-**🚀 RÉVOLUTION AGENT AI : Plus de copie manuelle, intégration automatique !**
+**🚀 RÉVOLUTION : Cursor sauvegarde directement dans wedia_demo !**
 
 ## ⚡ OPTIMISATIONS REQUISES
 
@@ -414,9 +482,9 @@ function savePromptToFile(prompt, recordingFile) {
 }
 
 // 🚀 Fonction principale
-function generateCursorPromptFromRecording(recordingFile) {
+async function generateCursorPromptFromRecording(recordingFile) {
   try {
-    const prompt = generateCursorPrompt(recordingFile);
+    const prompt = await generateCursorPrompt(recordingFile);
     const savedFile = savePromptToFile(prompt, recordingFile);
     
     return {
@@ -435,21 +503,23 @@ function generateCursorPromptFromRecording(recordingFile) {
 
 // 🎬 Export et CLI
 if (require.main === module) {
-  const recordingFile = process.argv[2];
-  
-  if (!recordingFile) {
-    console.error('❌ Usage: node cursor-prompt-generator.js <recording.json>');
-    process.exit(1);
-  }
-  
-  const result = generateCursorPromptFromRecording(recordingFile);
-  
-  if (result.success) {
-    console.log(`✅ Prompt généré: ${result.promptPath}`);
-  } else {
-    console.error(`❌ Erreur: ${result.error}`);
-    process.exit(1);
-  }
+  (async () => {
+    const recordingFile = process.argv[2];
+    
+    if (!recordingFile) {
+      console.error('❌ Usage: node cursor-prompt-generator.js <recording.json>');
+      process.exit(1);
+    }
+    
+    const result = await generateCursorPromptFromRecording(recordingFile);
+    
+    if (result.success) {
+      console.log(`✅ Prompt généré: ${result.promptPath}`);
+    } else {
+      console.error(`❌ Erreur: ${result.error}`);
+      process.exit(1);
+    }
+  })();
 }
 
 module.exports = { generateCursorPromptFromRecording };
